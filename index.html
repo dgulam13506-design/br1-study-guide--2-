@@ -631,9 +631,22 @@
         <div style="font-size:11px;color:var(--ink-mute);font-family:'Inconsolata',monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Time remaining</div>
         <div class="exam-timer" id="exam-timer">30:00</div>
       </div>
-      <div style="text-align:right;">
-        <div class="exam-progress-label" id="exam-progress-label">1 / 20</div>
-        <div style="font-size:11px;color:var(--ink-mute);margin-top:2px;">questions</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="pause-btn" id="pause-btn" onclick="togglePause()">⏸ Pause</button>
+        <div style="text-align:right;">
+          <div class="exam-progress-label" id="exam-progress-label">1 / 20</div>
+          <div style="font-size:11px;color:var(--ink-mute);margin-top:2px;">questions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pause overlay -->
+    <div class="pause-overlay" id="pause-overlay">
+      <div class="pause-card">
+        <div class="pause-icon">⏸</div>
+        <h3>Exam Paused</h3>
+        <p>Timer is stopped. Take a break!</p>
+        <button class="mock-start-btn" onclick="togglePause()">▶ Resume Exam</button>
       </div>
     </div>
 

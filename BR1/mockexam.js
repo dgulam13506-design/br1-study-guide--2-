@@ -60,6 +60,7 @@ var mockState = {
   timerInterval: null,
   secondsLeft:   TIMER_SECONDS,
   finished:      false,
+  paused:        false,
   examIndex:     0,
 };
 
@@ -239,6 +240,9 @@ function resetMockExam() {
   clearInterval(mockState.timerInterval);
   mockState.examIndex = mockState.examIndex === 0 ? 1 : 0;
 
+  mockState.paused = false;
+  var overlay = document.getElementById('pause-overlay');
+  if (overlay) overlay.classList.remove('visible');
   document.getElementById('mock-active').classList.remove('on');
   document.getElementById('mock-results').classList.remove('on');
   document.getElementById('mock-intro').style.display = 'block';
