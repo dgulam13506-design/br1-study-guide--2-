@@ -1,35 +1,31 @@
 // ============================================================
 //  BR1 STUDY GUIDE — app.js
-//  Main entry point: navigation + initialisation
+//  Navigation + init. Uses var (not const/let) for globals
+//  so multiple script tags share scope without errors.
 // ============================================================
 
-const PANELS = ['overview','ch2','ch6','ch9','ch11','ch12','ch13','mockexam'];
-const NAV_BTNS = document.querySelectorAll('.nav-btn');
+var PANELS   = ['overview','ch2','ch6','ch9','ch11','ch12','ch13','mockexam'];
+var NAV_BTNS = [];   // populated after DOM ready
 
-// ─────────────────────────────────────────────
-// NAVIGATION
-// ─────────────────────────────────────────────
 function showPanel(id) {
-  PANELS.forEach(p => {
-    const el = document.getElementById(p);
-    if (el) el.classList.toggle('active', p === id);
-  });
-  NAV_BTNS.forEach((btn, i) => {
-    btn.classList.toggle('active', i === PANELS.indexOf(id));
-  });
+  for (var i = 0; i < PANELS.length; i++) {
+    var el = document.getElementById(PANELS[i]);
+    if (el) el.classList.toggle('active', PANELS[i] === id);
+  }
+  for (var j = 0; j < NAV_BTNS.length; j++) {
+    NAV_BTNS[j].classList.toggle('active', j === PANELS.indexOf(id));
+  }
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ─────────────────────────────────────────────
-// INIT — render all dynamic components
-// ─────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-  const chapters = ['ch2','ch6','ch9','ch11','ch12','ch13'];
+window.addEventListener('DOMContentLoaded', function () {
+  NAV_BTNS = document.querySelectorAll('.nav-btn');
 
-  chapters.forEach(ch => {
-    renderFlashcards(ch);
-    renderChapterQuiz(ch);
-    renderFillExercise(ch);
-    renderMatchExercise(ch);
-  });
+  var chapters = ['ch2','ch6','ch9','ch11','ch12','ch13'];
+  for (var i = 0; i < chapters.length; i++) {
+    renderFlashcards(chapters[i]);
+    renderChapterQuiz(chapters[i]);
+    renderFillExercise(chapters[i]);
+    renderMatchExercise(chapters[i]);
+  }
 });
