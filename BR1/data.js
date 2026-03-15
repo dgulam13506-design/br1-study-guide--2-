@@ -6,7 +6,7 @@
 // ─────────────────────────────────────────────
 // FLASHCARDS  (per chapter)
 // ─────────────────────────────────────────────
-const FLASHCARDS = {
+var FLASHCARDS = {
   ch2: [
     { q: "What is 'Parsimony' in scientific research?", a: "Economy in explanation — the simplest model that adequately explains a phenomenon is preferred over a more complex one." },
     { q: "What does 'Replicability' mean?", a: "The ability of other researchers to reproduce the same results when using the same methods, sample type, and context." },
@@ -81,7 +81,7 @@ const FLASHCARDS = {
 // ─────────────────────────────────────────────
 // CHAPTER QUIZZES  (3–4 Qs per chapter)
 // ─────────────────────────────────────────────
-const CHAPTER_QUIZZES = {
+var CHAPTER_QUIZZES = {
   ch2: [
     { q: "A researcher finds their study results can be reproduced by others using the same methodology. Which hallmark does this demonstrate?", opts: ["Objectivity", "Replicability", "Parsimony", "Generalizability"], c: 1, fb: "Replicability means other researchers reproduce the same results under the same conditions and methods." },
     { q: "In the hypothetico-deductive method, what comes directly AFTER developing hypotheses?", opts: ["Identify the broad problem area", "Data analysis", "Determine measures", "Define the problem statement"], c: 2, fb: "Step 4 is 'Determine measures' — deciding how to operationalise and measure the variables specified in the hypotheses." },
@@ -122,7 +122,7 @@ const CHAPTER_QUIZZES = {
 // ─────────────────────────────────────────────
 // FILL-IN-THE-BLANK EXERCISES
 // ─────────────────────────────────────────────
-const FILL_EXERCISES = {
+var FILL_EXERCISES = {
   ch2: {
     sentence: 'Scientific research enables findings to be stated with accuracy and [confidence]. The simplest model that explains a phenomenon reflects the hallmark of [parsimony]. In the hypothetico-deductive method, step 3 is to develop [hypotheses].',
     blanks: [
@@ -178,7 +178,7 @@ const FILL_EXERCISES = {
 // ─────────────────────────────────────────────
 // MATCHING EXERCISES
 // ─────────────────────────────────────────────
-const MATCH_EXERCISES = {
+var MATCH_EXERCISES = {
   ch2: {
     pairs: [
       { term: 'Positivism',       def: 'Objective external reality; quantitative' },
@@ -233,7 +233,7 @@ const MATCH_EXERCISES = {
 // LARGE MOCK EXAM QUESTION BANK
 // 60 questions across all chapters
 // ─────────────────────────────────────────────
-const MOCK_BANK = [
+var MOCK_BANK = [
   // ─── CHAPTER 2 ───
   { ch:'Ch.2', q:"Which hallmark ensures findings can be applied to settings beyond the original study?", opts:["Parsimony","Replicability","Generalizability","Rigor"], c:2, fb:"Generalizability refers to the extent to which findings can be extended to other contexts, populations, and settings." },
   { ch:'Ch.2', q:"A researcher uses the simplest theoretical model that explains a phenomenon. This reflects:", opts:["Objectivity","Parsimony","Precision","Purposiveness"], c:1, fb:"Parsimony = economy in explanation. The simplest adequate model is preferred over an unnecessarily complex one." },
