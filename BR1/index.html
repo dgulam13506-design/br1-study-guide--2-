@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BR1 — Business Research Methods Study Guide</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     HEADER
+══════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-eyebrow">BR1 · 1025BR1_KT · Block 3</div>
+  <h1>Business Research<br><em>Methods</em> Study Guide</h1>
+  <div class="header-pills">
+    <span class="header-pill">📖 Bougie &amp; Sekaran 2016 / 2025</span>
+    <span class="header-pill">⏱ 100 min · 40 MCQs</span>
+    <span class="header-pill">🎯 40% of final grade</span>
+    <span class="header-pill">Week 6 — Block 3</span>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav class="site-nav">
+  <button class="nav-btn active"    onclick="showPanel('overview')">Overview</button>
+  <button class="nav-btn"           onclick="showPanel('ch2')"><span class="nav-week">W1</span>Scientific Approach</button>
+  <button class="nav-btn"           onclick="showPanel('ch6')"><span class="nav-week">W2</span>Research Design</button>
+  <button class="nav-btn"           onclick="showPanel('ch9')"><span class="nav-week">W3</span>Questionnaires</button>
+  <button class="nav-btn"           onclick="showPanel('ch11')"><span class="nav-week">W4</span>Measurement</button>
+  <button class="nav-btn"           onclick="showPanel('ch12')"><span class="nav-week">W4</span>Scaling &amp; Validity</button>
+  <button class="nav-btn"           onclick="showPanel('ch13')"><span class="nav-week">W5</span>Sampling</button>
+  <button class="nav-btn exam-btn"  onclick="showPanel('mockexam')">🎯 Mock Exam</button>
+</nav>
+
+<main class="main">
+
+<!-- ══════════════════════════════════════════
+     OVERVIEW
+══════════════════════════════════════════ -->
+<section id="overview" class="panel active">
+
+  <div class="exam-banner">
+    <div class="exam-banner-icon">📋</div>
+    <div>
+      <h3>Exam at a Glance</h3>
+      <div class="exam-stats">
+        <div class="exam-stat"><div class="es-val">40</div><div class="es-label">MCQs</div></div>
+        <div class="exam-stat"><div class="es-val">100</div><div class="es-label">Minutes</div></div>
+        <div class="exam-stat"><div class="es-val">40%</div><div class="es-label">Of grade</div></div>
+        <div class="exam-stat"><div class="es-val">Wk 6</div><div class="es-label">Block 3</div></div>
+        <div class="exam-stat"><div class="es-val">6</div><div class="es-label">Chapters</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overview-grid">
+    <div class="ov-card c2" onclick="showPanel('ch2')">
+      <div class="ov-week">Week 1 · Chapter 2</div>
+      <div class="ov-title">Scientific Approach</div>
+      <div class="ov-desc">The 8 hallmarks + hypothetico-deductive method</div>
+      <div class="ov-tags">
+        <span class="ov-tag">8 Hallmarks</span>
+        <span class="ov-tag">7-Step Method</span>
+        <span class="ov-tag">Positivism</span>
+        <span class="ov-tag">Parsimony</span>
+      </div>
+    </div>
+    <div class="ov-card c6" onclick="showPanel('ch6')">
+      <div class="ov-week">Week 2 · Chapter 6</div>
+      <div class="ov-title">Research Design</div>
+      <div class="ov-desc">Blueprint for data collection</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Strategies</span>
+        <span class="ov-tag">Study Settings</span>
+        <span class="ov-tag">Unit of Analysis</span>
+        <span class="ov-tag">Time Horizon</span>
+      </div>
+    </div>
+    <div class="ov-card c9" onclick="showPanel('ch9')">
+      <div class="ov-week">Week 3 · Chapter 9</div>
+      <div class="ov-title">Questionnaires</div>
+      <div class="ov-desc">Design, types &amp; administration</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Types</span>
+        <span class="ov-tag">Wording Pitfalls</span>
+        <span class="ov-tag">Sequencing</span>
+        <span class="ov-tag">Pretesting</span>
+      </div>
+    </div>
+    <div class="ov-card c11" onclick="showPanel('ch11')">
+      <div class="ov-week">Week 4 · Chapter 11</div>
+      <div class="ov-title">Measurement</div>
+      <div class="ov-desc">Operational definition of variables</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Operationalisation</span>
+        <span class="ov-tag">Dimensions</span>
+        <span class="ov-tag">Elements</span>
+      </div>
+    </div>
+    <div class="ov-card c12" onclick="showPanel('ch12')">
+      <div class="ov-week">Week 4 · Chapter 12</div>
+      <div class="ov-title">Scaling &amp; Validity</div>
+      <div class="ov-desc">Scale types, reliability &amp; validity</div>
+      <div class="ov-tags">
+        <span class="ov-tag">NOIR scales</span>
+        <span class="ov-tag">Likert</span>
+        <span class="ov-tag">Reliability</span>
+        <span class="ov-tag">Validity</span>
+      </div>
+    </div>
+    <div class="ov-card c13" onclick="showPanel('ch13')">
+      <div class="ov-week">Week 5 · Chapter 13</div>
+      <div class="ov-title">Sampling</div>
+      <div class="ov-desc">Selecting participants &amp; sample size</div>
+      <div class="ov-tags">
+        <span class="ov-tag">Probability</span>
+        <span class="ov-tag">Non-probability</span>
+        <span class="ov-tag">Sample size</span>
+        <span class="ov-tag">Precision</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERVIEW TUTOR -->
+  <div class="tutor-box">
+    <div class="tutor-top">
+      <div class="tutor-dot"></div>
+      <div>
+        <div class="tutor-label">AI Study Tutor</div>
+        <div class="tutor-sublabel">Ask anything about your BR1 exam topics</div>
+      </div>
+    </div>
+    <div class="tutor-msgs" id="tm-overview">
+      <div class="tutor-msg bot">👋 Hi! I'm your BR1 tutor. Ask me to explain any concept, quiz you, or help you understand tricky topics from chapters 2, 6, 9, 11, 12 and 13.</div>
+    </div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('overview','Summarise the 8 hallmarks of scientific research')">8 Hallmarks</button>
+      <button class="tutor-chip" onclick="tutorChip('overview','Explain the 7 steps of the hypothetico-deductive method with an example')">Hyp-deductive</button>
+      <button class="tutor-chip" onclick="tutorChip('overview','What is the difference between probability and non-probability sampling?')">Sampling types</button>
+      <button class="tutor-chip" onclick="tutorChip('overview','Quiz me with 5 mixed practice MCQs across all exam topics')">🎲 Quiz me!</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-overview" placeholder="Ask about any exam topic…" onkeydown="tutorKey(event,'overview')">
+      <button class="tutor-send" id="tb-overview" onclick="tutorSend('overview')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CH2 — SCIENTIFIC APPROACH
+══════════════════════════════════════════ -->
+<section id="ch2" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block c2">2</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 2 · Week 1</div>
+      <h2>The Scientific Approach</h2>
+      <div class="ch-sub">Hallmarks of science, the hypothetico-deductive method &amp; research philosophies</div>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <div class="callout-label">📌 Core Definition</div>
+    <p>Scientific research is an <strong>organised, systematic, data-based, critical, objective</strong> inquiry into a specific problem, conducted in a step-by-step logical manner. It is not based on hunches or intuition alone.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">⭐</span> The 8 Hallmarks of Scientific Research</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">1. Purposiveness</div><div class="def-card-desc">Research starts with a clear, definite purpose or aim. The researcher has a focused direction from the outset.</div></div>
+    <div class="def-card"><div class="def-card-term">2. Rigor</div><div class="def-card-desc">A good theoretical base and sound methodological design are critical. Carefulness, scrupulousness, and exactitude in all procedures.</div></div>
+    <div class="def-card"><div class="def-card-term">3. Testability</div><div class="def-card-desc">Hypotheses developed from the research must be testable using available statistical methods and empirical data.</div></div>
+    <div class="def-card"><div class="def-card-term">4. Replicability</div><div class="def-card-desc">Results should be reproducible when the same methods are applied in similar conditions by other researchers.</div></div>
+    <div class="def-card"><div class="def-card-term">5. Precision &amp; Confidence</div><div class="def-card-desc">Precision = closeness to the true value (standard error). Confidence = probability the true value falls within the estimate range (e.g. 95%).</div></div>
+    <div class="def-card"><div class="def-card-term">6. Objectivity</div><div class="def-card-desc">Conclusions are based on empirical facts from data, not on the researcher's personal values, emotions, or biases.</div></div>
+    <div class="def-card"><div class="def-card-term">7. Generalizability</div><div class="def-card-desc">The scope to which findings from one study can be applied to other settings, contexts, and populations.</div></div>
+    <div class="def-card"><div class="def-card-term">8. Parsimony</div><div class="def-card-desc">Economy in explanation — the simplest model that adequately explains the phenomenon is preferred over complex ones.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🔄</span> The Hypothetico-Deductive Method (7 Steps)</div>
+  <div class="callout callout-amber">
+    <div class="callout-label">Key Idea</div>
+    <p>Starts with a <strong>theory</strong>, generates testable <strong>hypotheses</strong>, collects data, and uses results to confirm or disconfirm the theory. The most widely used scientific method in business research.</p>
+  </div>
+  <div class="step-list">
+    <div class="step-row"><div class="step-badge badge-amber">1</div><div class="step-body"><strong>Identify a broad problem area</strong> — Observe something that warrants investigation in the workplace.</div></div>
+    <div class="step-row"><div class="step-badge badge-amber">2</div><div class="step-body"><strong>Define the problem statement</strong> — Narrow it into a clear, focused, researchable question.</div></div>
+    <div class="step-row"><div class="step-badge badge-amber">3</div><div class="step-body"><strong>Develop hypotheses</strong> — Formulate testable, tentative statements about expected relationships between variables.</div></div>
+    <div class="step-row"><div class="step-badge badge-amber">4</div><div class="step-body"><strong>Determine measures</strong> — Decide how to operationalise and measure the variables in each hypothesis.</div></div>
+    <div class="step-row"><div class="step-badge badge-amber">5</div><div class="step-body"><strong>Data collection</strong> — Gather data from appropriate sources using the chosen instruments.</div></div>
+    <div class="step-row"><div class="step-badge badge-amber">6</div><div class="step-body"><strong>Data analysis</strong> — Analyse the collected data using appropriate statistical techniques.</div></div>
+    <div class="step-row"><div class="step-badge badge-amber">7</div><div class="step-body"><strong>Interpretation of data</strong> — Interpret results, accept or reject hypotheses, draw conclusions about the problem.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🔭</span> Alternative Research Philosophies</div>
+  <div class="two-col">
+    <div class="card-white"><h3>Positivism</h3><p>Assumes an external, objective reality independent of the observer. Knowledge comes from observable facts. Quantitative, value-free methods. Researcher is independent from what is studied.</p></div>
+    <div class="card-white"><h3>Constructionism</h3><p>Reality is socially constructed through interaction. Focuses on how people make sense of the world. Qualitative, interpretive methods. Studies the accounts people give of their experiences.</p></div>
+    <div class="card-white"><h3>Critical Realism</h3><p>Real structures in the world exist independently of us, but our knowledge is always provisional. Distinguishes between observable events and the underlying mechanisms that cause them.</p></div>
+    <div class="card-white"><h3>Pragmatism</h3><p>Not committed to one philosophy. Chooses methods based on what works best for the question. Supports mixed methods. Research is evaluated by its practical consequences.</p></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="fill-ch2"></div>
+  <div id="match-ch2"></div>
+
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="fc-ch2"></div>
+
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="quiz-ch2"></div>
+
+  <div class="tutor-box">
+    <div class="tutor-top"><div class="tutor-dot"></div><div><div class="tutor-label">Chapter 2 Tutor</div><div class="tutor-sublabel">Scientific Approach questions</div></div></div>
+    <div class="tutor-msgs" id="tm-ch2"><div class="tutor-msg bot">Ask me about the 8 hallmarks, the hypothetico-deductive method, or research philosophies!</div></div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('ch2','What is the difference between precision and confidence?')">Precision vs Confidence</button>
+      <button class="tutor-chip" onclick="tutorChip('ch2','Give me an example of how parsimony applies in research')">Parsimony example</button>
+      <button class="tutor-chip" onclick="tutorChip('ch2','Quiz me on the hypothetico-deductive method with a tricky MCQ')">Quiz me</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-ch2" placeholder="Ask about Ch.2…" onkeydown="tutorKey(event,'ch2')">
+      <button class="tutor-send" id="tb-ch2" onclick="tutorSend('ch2')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CH6 — RESEARCH DESIGN
+══════════════════════════════════════════ -->
+<section id="ch6" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block c6">6</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 6 · Week 2</div>
+      <h2>Elements of Research Design</h2>
+      <div class="ch-sub">Blueprint for data collection, measurement, and analysis</div>
+    </div>
+  </div>
+
+  <div class="callout callout-teal">
+    <div class="callout-label">📌 Definition</div>
+    <p>A <strong>research design</strong> is a blueprint or plan for the collection, measurement, and analysis of data, created to answer the research questions. It ensures data collected are relevant and analysable.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🗺️</span> Research Strategies</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Experiments</div><div class="def-card-desc">Researcher manipulates independent variables and controls the environment to establish cause-and-effect relationships.</div></div>
+    <div class="def-card"><div class="def-card-term">Survey Research</div><div class="def-card-desc">Data collected from a sample via questionnaires or interviews to describe, compare, or explain attitudes and behaviours.</div></div>
+    <div class="def-card"><div class="def-card-term">Ethnography</div><div class="def-card-desc">Researcher immerses themselves in a natural environment over extended time. Uses participant observation and field notes.</div></div>
+    <div class="def-card"><div class="def-card-term">Case Studies</div><div class="def-card-desc">In-depth investigation of one or a few real-life cases. Useful for understanding complex phenomena in context.</div></div>
+    <div class="def-card"><div class="def-card-term">Grounded Theory</div><div class="def-card-desc">Theory built inductively from data collected in the field. The theory is literally "grounded" in the empirical data.</div></div>
+    <div class="def-card"><div class="def-card-term">Action Research</div><div class="def-card-desc">Conducted collaboratively with practitioners to solve a practical problem while simultaneously generating knowledge.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">⚙️</span> Key Design Dimensions</div>
+  <div class="two-col">
+    <div class="card-white"><h3>Researcher Interference</h3><ul><li><strong>Minimal (correlational)</strong> — no manipulation, studies things as they are</li><li><strong>Moderate (ex post facto)</strong> — examines cause after the fact</li><li><strong>Maximum (experiment)</strong> — manipulates the independent variable</li></ul></div>
+    <div class="card-white"><h3>Study Setting</h3><ul><li><strong>Contrived (lab)</strong> — artificial; high internal validity, low external validity</li><li><strong>Non-contrived (field)</strong> — natural setting; high external validity, harder to control variables</li></ul></div>
+    <div class="card-white"><h3>Unit of Analysis</h3><ul><li><strong>Individual</strong> — each person's data analysed separately</li><li><strong>Dyad</strong> — two-person pairs (e.g. supervisor–subordinate)</li><li><strong>Group</strong> — teams, departments</li><li><strong>Organisation</strong> — whole companies</li><li><strong>Culture</strong> — societies, nations</li></ul></div>
+    <div class="card-white"><h3>Time Horizon</h3><ul><li><strong>Cross-sectional</strong> — one point in time; faster, cheaper; snapshot</li><li><strong>Longitudinal</strong> — multiple time points; tracks change; establishes temporal ordering</li></ul></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="fill-ch6"></div>
+  <div id="match-ch6"></div>
+
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="fc-ch6"></div>
+
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="quiz-ch6"></div>
+
+  <div class="tutor-box">
+    <div class="tutor-top"><div class="tutor-dot"></div><div><div class="tutor-label">Chapter 6 Tutor</div><div class="tutor-sublabel">Research Design questions</div></div></div>
+    <div class="tutor-msgs" id="tm-ch6"><div class="tutor-msg bot">Ask me about research strategies, study settings, units of analysis, or time horizons!</div></div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('ch6','Contrived vs non-contrived settings — key differences and trade-offs')">Contrived vs field</button>
+      <button class="tutor-chip" onclick="tutorChip('ch6','When would you choose a longitudinal over a cross-sectional design?')">Time horizon choice</button>
+      <button class="tutor-chip" onclick="tutorChip('ch6','Give me a tricky MCQ about research design elements')">Quiz me</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-ch6" placeholder="Ask about Ch.6…" onkeydown="tutorKey(event,'ch6')">
+      <button class="tutor-send" id="tb-ch6" onclick="tutorSend('ch6')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CH9 — QUESTIONNAIRES
+══════════════════════════════════════════ -->
+<section id="ch9" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block c9">9</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 9 · Week 3</div>
+      <h2>Administering Questionnaires</h2>
+      <div class="ch-sub">Design, types, wording principles &amp; data collection ethics</div>
+    </div>
+  </div>
+
+  <div class="callout callout-rose">
+    <div class="callout-label">📌 Definition</div>
+    <p>A <strong>questionnaire</strong> is a preformulated written set of questions to which respondents record their answers, usually within closely defined alternatives. Used to collect large amounts of quantitative data.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">📋</span> Types of Questionnaires</div>
+  <div class="two-col">
+    <div class="card-white"><h3>Personally Administered</h3><p>Distributed and collected in person. Researcher can clarify doubts. High response rate. Can ensure confidentiality on the spot. Good for sensitive topics.</p></div>
+    <div class="card-white"><h3>Mail Questionnaires</h3><p>Sent by post. Wide geographic reach, low cost. Very low response rates. No one to clarify ambiguities. Slow turnaround.</p></div>
+    <div class="card-white"><h3>Electronic / Online</h3><p>Sent via email or web platform. Fast, cheap, can reach large samples. Risk of sampling bias (internet users only). Can use branching logic.</p></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">⚠️</span> Common Questionnaire Pitfalls (Exam Favourites!)</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Double-barreled</div><div class="def-card-desc">Asks two questions at once: "How satisfied are you with your salary AND benefits?" — must be split into two separate questions.</div></div>
+    <div class="def-card"><div class="def-card-term">Leading question</div><div class="def-card-desc">Wording that suggests the expected answer: "Don't you agree this policy is fair?" — introduces systematic bias.</div></div>
+    <div class="def-card"><div class="def-card-term">Loaded question</div><div class="def-card-desc">Uses emotionally charged words that trigger a biased reaction, e.g. asking about a "radical" or "controversial" policy.</div></div>
+    <div class="def-card"><div class="def-card-term">Ambiguous wording</div><div class="def-card-desc">Vague terms like "often" or "many" are interpreted differently by different respondents — use specific frequencies.</div></div>
+    <div class="def-card"><div class="def-card-term">Recall dependence</div><div class="def-card-desc">Asking respondents to recall events from the distant past leads to memory errors and inaccurate data.</div></div>
+    <div class="def-card"><div class="def-card-term">Social desirability bias</div><div class="def-card-desc">Respondents answer to appear socially acceptable rather than giving their true response.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">📐</span> Question Types</div>
+  <table class="styled-table">
+    <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Open-ended</strong></td><td>Respondent answers freely in own words</td><td>"Describe your experience with remote work."</td></tr>
+      <tr><td><strong>Dichotomous</strong></td><td>Only two options</td><td>Yes / No</td></tr>
+      <tr><td><strong>Multiple choice</strong></td><td>Fixed list of options, choose one or more</td><td>A, B, C, D</td></tr>
+      <tr><td><strong>Rating scale</strong></td><td>Degree of agreement/intensity</td><td>1 = Strongly Disagree … 5 = Strongly Agree</td></tr>
+      <tr><td><strong>Ranking</strong></td><td>Order items by preference or importance</td><td>Rank 1–5 from most to least important</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-rose">
+    <div class="callout-label">Sequencing Rule</div>
+    <p>Start with <strong>general, non-sensitive</strong> questions → move to specific → place <strong>sensitive/demographic</strong> questions (age, income, religion) at the <strong>end</strong>.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="fill-ch9"></div>
+  <div id="match-ch9"></div>
+
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="fc-ch9"></div>
+
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="quiz-ch9"></div>
+
+  <div class="tutor-box">
+    <div class="tutor-top"><div class="tutor-dot"></div><div><div class="tutor-label">Chapter 9 Tutor</div><div class="tutor-sublabel">Questionnaire design questions</div></div></div>
+    <div class="tutor-msgs" id="tm-ch9"><div class="tutor-msg bot">Ask me about questionnaire types, wording pitfalls, or design principles!</div></div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('ch9','What makes a question double-barreled and why is it a problem?')">Double-barreled</button>
+      <button class="tutor-chip" onclick="tutorChip('ch9','Compare personally administered vs electronic questionnaires')">Types comparison</button>
+      <button class="tutor-chip" onclick="tutorChip('ch9','Give me 2 MCQs about questionnaire design for the BR1 exam')">Quiz me</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-ch9" placeholder="Ask about Ch.9…" onkeydown="tutorKey(event,'ch9')">
+      <button class="tutor-send" id="tb-ch9" onclick="tutorSend('ch9')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CH11 — MEASUREMENT
+══════════════════════════════════════════ -->
+<section id="ch11" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block c11">11</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 11 · Week 4</div>
+      <h2>Measurement: Operational Definition</h2>
+      <div class="ch-sub">How to translate abstract concepts into measurable variables</div>
+    </div>
+  </div>
+
+  <div class="callout callout-indigo">
+    <div class="callout-label">📌 Definition</div>
+    <p><strong>Measurement</strong> = the assignment of numbers or other symbols to characteristics (attributes) of objects according to a prespecified set of rules.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🔬</span> Operationalisation</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Operational Definition</div><div class="def-card-desc">Specifies exactly HOW an abstract concept will be measured in a study — reducing it to observable, measurable indicators. Example: "motivation" → score on a validated 12-item motivation scale.</div></div>
+    <div class="def-card"><div class="def-card-term">Conceptual Definition</div><div class="def-card-desc">A theoretical, dictionary-type definition of what a construct IS. Describes the meaning but not how to measure it.</div></div>
+    <div class="def-card"><div class="def-card-term">Dimensions</div><div class="def-card-desc">The sub-components or facets of a concept. "Achievement motivation" has dimensions of work orientation, mastery, and competitiveness.</div></div>
+    <div class="def-card"><div class="def-card-term">Elements</div><div class="def-card-desc">The specific questionnaire items or indicators used to measure each dimension. Elements make up the scale items.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🔄</span> The Operationalisation Process</div>
+  <div class="step-list">
+    <div class="step-row"><div class="step-badge badge-indigo">1</div><div class="step-body"><strong>Identify the concept</strong> to be measured (e.g. "employee loyalty")</div></div>
+    <div class="step-row"><div class="step-badge badge-indigo">2</div><div class="step-body"><strong>Identify the dimensions</strong> of the concept (e.g. attitudinal loyalty, behavioural loyalty)</div></div>
+    <div class="step-row"><div class="step-badge badge-indigo">3</div><div class="step-body"><strong>Define elements</strong> for each dimension (specific questions that capture each dimension)</div></div>
+    <div class="step-row"><div class="step-badge badge-indigo">4</div><div class="step-body"><strong>Create the measurement scale</strong> (e.g. 5-point Likert scale items for each element)</div></div>
+  </div>
+
+  <div class="callout callout-indigo">
+    <div class="callout-label">⚠️ What Operationalisation Is NOT</div>
+    <p>Operationalisation is <strong>not</strong> just a conceptual definition. It must specify <em>how</em> you will actually measure the concept. Without operationalisation, abstract constructs cannot be tested empirically.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="fill-ch11"></div>
+  <div id="match-ch11"></div>
+
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="fc-ch11"></div>
+
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="quiz-ch11"></div>
+
+  <div class="tutor-box">
+    <div class="tutor-top"><div class="tutor-dot"></div><div><div class="tutor-label">Chapter 11 Tutor</div><div class="tutor-sublabel">Measurement &amp; Operationalisation</div></div></div>
+    <div class="tutor-msgs" id="tm-ch11"><div class="tutor-msg bot">Ask me about operationalisation, dimensions, elements, or how to measure abstract concepts!</div></div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('ch11','Operationalise the concept of \"customer loyalty\" step by step')">Operationalise example</button>
+      <button class="tutor-chip" onclick="tutorChip('ch11','What is the difference between conceptual and operational definitions?')">Conceptual vs operational</button>
+      <button class="tutor-chip" onclick="tutorChip('ch11','Give me a tricky MCQ about measurement and operationalisation')">Quiz me</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-ch11" placeholder="Ask about Ch.11…" onkeydown="tutorKey(event,'ch11')">
+      <button class="tutor-send" id="tb-ch11" onclick="tutorSend('ch11')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CH12 — SCALING
+══════════════════════════════════════════ -->
+<section id="ch12" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block c12">12</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 12 · Week 4</div>
+      <h2>Scaling, Reliability &amp; Validity</h2>
+      <div class="ch-sub">Types of scales and assessing measurement quality</div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">📏</span> The Four Scale Types (NOIR)</div>
+  <table class="styled-table">
+    <thead><tr><th>Scale</th><th>Properties</th><th>Example</th><th>Statistics allowed</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Nominal</strong></td><td>Categories only; no order, no distance</td><td>Gender, nationality, job type</td><td>Mode, frequencies, chi-square</td></tr>
+      <tr><td><strong>Ordinal</strong></td><td>Ranked order; distances not equal</td><td>Rankings, competitive positions</td><td>Median, percentile, rank correlation</td></tr>
+      <tr><td><strong>Interval</strong></td><td>Equal distances; no true zero</td><td>Temperature (°C), IQ, year of birth</td><td>Mean, SD, correlation, regression</td></tr>
+      <tr><td><strong>Ratio</strong></td><td>Equal distances + true zero</td><td>Age, salary, sales volume, weight</td><td>All statistics including ratios</td></tr>
+    </tbody>
+  </table>
+
+  <div class="section-title"><span class="st-icon">⚖️</span> Rating Scales</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Likert Scale</div><div class="def-card-desc">Respondents indicate degree of agreement with statements (1 = Strongly Disagree to 5 = Strongly Agree). Items are summed into a composite score. Most common in business research.</div></div>
+    <div class="def-card"><div class="def-card-term">Semantic Differential</div><div class="def-card-desc">Bipolar adjectives at opposite ends of a continuum (e.g. Good ←——→ Bad). Used to measure attitudes, brand image, or perceptions.</div></div>
+    <div class="def-card"><div class="def-card-term">Numerical Scale</div><div class="def-card-desc">Like semantic differential but uses numbers rather than words at the anchors. Respondents select a number along the continuum.</div></div>
+    <div class="def-card"><div class="def-card-term">Itemised Rating Scale</div><div class="def-card-desc">Provides specific numbered categories each with a brief verbal description; respondents select the category that best fits.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🔍</span> Reliability &amp; Validity</div>
+  <div class="two-col">
+    <div class="card-white">
+      <h3>Reliability</h3>
+      <p style="margin-bottom:10px;">A measure is <strong>reliable</strong> if it consistently produces the same results.</p>
+      <ul>
+        <li><strong>Stability (test-retest):</strong> Same results when administered twice to same group</li>
+        <li><strong>Internal consistency:</strong> Items measuring same construct correlate (Cronbach's alpha ≥ 0.70)</li>
+      </ul>
+    </div>
+    <div class="card-white">
+      <h3>Validity</h3>
+      <p style="margin-bottom:10px;">A measure is <strong>valid</strong> if it actually measures what it claims to measure.</p>
+      <ul>
+        <li><strong>Content:</strong> Items cover all facets of the concept</li>
+        <li><strong>Criterion-related:</strong> Correlates with an external criterion</li>
+        <li><strong>Construct:</strong> Measures the theoretical construct correctly</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout callout-slate">
+    <div class="callout-label">⚠️ Key Relationship</div>
+    <p>A measure can be <strong>reliable without being valid</strong> (consistently measures the wrong thing). But a <strong>valid measure must also be reliable</strong>. Validity is the higher-order criterion.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🔄</span> Reflective vs Formative Scales</div>
+  <div class="two-col">
+    <div class="card-white"><h3>Reflective Scale</h3><p>The latent construct <strong>causes</strong> the items. If the construct changes, all items should change in the same direction. Items must correlate with each other. <em>Example: depression items are all caused by the underlying depression construct.</em></p></div>
+    <div class="card-white"><h3>Formative Scale</h3><p>The items <strong>together define</strong> the construct — items "form" the construct. Items don't need to correlate. <em>Example: SES = income + education + job status. Changing one affects SES even if the others stay constant.</em></p></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="fill-ch12"></div>
+  <div id="match-ch12"></div>
+
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="fc-ch12"></div>
+
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="quiz-ch12"></div>
+
+  <div class="tutor-box">
+    <div class="tutor-top"><div class="tutor-dot"></div><div><div class="tutor-label">Chapter 12 Tutor</div><div class="tutor-sublabel">Scaling, Reliability &amp; Validity</div></div></div>
+    <div class="tutor-msgs" id="tm-ch12"><div class="tutor-msg bot">Ask me about scale types, rating scales, reliability and validity!</div></div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('ch12','What is the difference between nominal and ordinal scales? Give examples.')">Nominal vs Ordinal</button>
+      <button class="tutor-chip" onclick="tutorChip('ch12','Can a measure be reliable but not valid? Explain with an example.')">Reliability vs Validity</button>
+      <button class="tutor-chip" onclick="tutorChip('ch12','Give me 2 exam-style MCQs on scaling and validity')">Quiz me</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-ch12" placeholder="Ask about Ch.12…" onkeydown="tutorKey(event,'ch12')">
+      <button class="tutor-send" id="tb-ch12" onclick="tutorSend('ch12')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CH13 — SAMPLING
+══════════════════════════════════════════ -->
+<section id="ch13" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block c13">13</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 13 · Week 5</div>
+      <h2>Sampling</h2>
+      <div class="ch-sub">Selecting the right participants to represent the population</div>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">📚</span> Key Terminology</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Population</div><div class="def-card-desc">The entire group of people, events, or things about which the researcher wants to draw conclusions.</div></div>
+    <div class="def-card"><div class="def-card-term">Element</div><div class="def-card-desc">A single member of the population (one person, one company, one transaction).</div></div>
+    <div class="def-card"><div class="def-card-term">Sample</div><div class="def-card-desc">A subset of the population. Research is conducted on the sample; results are generalised to the population.</div></div>
+    <div class="def-card"><div class="def-card-term">Sampling Unit</div><div class="def-card-desc">The unit chosen for inclusion in the sample — could be a person, household, or organisation.</div></div>
+    <div class="def-card"><div class="def-card-term">Subject</div><div class="def-card-desc">A single member of the sample (the actual participant in the study).</div></div>
+    <div class="def-card"><div class="def-card-term">Sampling Frame</div><div class="def-card-desc">The actual list of sampling units from which the sample is drawn (e.g. employee database, phone directory).</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🎲</span> Probability Sampling</div>
+  <div class="callout callout-slate">
+    <div class="callout-label">Definition</div>
+    <p>Every member of the population has a <strong>known, non-zero probability</strong> of being selected. Allows for statistical generalisation to the population.</p>
+  </div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Simple Random Sampling (SRS)</div><div class="def-card-desc">Every element has an equal and independent chance. Uses random number generators. Most basic probability method.</div></div>
+    <div class="def-card"><div class="def-card-term">Systematic Sampling</div><div class="def-card-desc">Every k-th element from a list (e.g. every 10th person). Requires a sampling frame. Risk: periodicity bias.</div></div>
+    <div class="def-card"><div class="def-card-term">Stratified Random Sampling</div><div class="def-card-desc">Population divided into strata by a characteristic (e.g. gender). Random sample from each stratum. More representative.</div></div>
+    <div class="def-card"><div class="def-card-term">Cluster Sampling</div><div class="def-card-desc">Population divided into natural clusters (e.g. cities). Clusters randomly selected; elements within studied. Cheaper for large geographic populations.</div></div>
+    <div class="def-card"><div class="def-card-term">Double Sampling</div><div class="def-card-desc">A subsample is drawn from an initial sample for more detailed study. Used when extra data collection is expensive.</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">👤</span> Non-Probability Sampling</div>
+  <div class="callout callout-slate">
+    <div class="callout-label">Definition</div>
+    <p>Not every member has a known selection probability. <strong>Cannot statistically generalise</strong> to the population. Used when probability sampling is not feasible or sufficient for the purpose.</p>
+  </div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Convenience Sampling</div><div class="def-card-desc">Select whoever is most accessible. Cheapest and fastest. Lowest external validity. Used in exploratory research.</div></div>
+    <div class="def-card"><div class="def-card-term">Purposive / Judgmental</div><div class="def-card-desc">Researcher deliberately selects elements believed to be representative or useful. Requires domain expertise.</div></div>
+    <div class="def-card"><div class="def-card-term">Quota Sampling</div><div class="def-card-desc">Like stratified sampling but selection within strata is non-random. Ensures subgroup representation without true randomness.</div></div>
+    <div class="def-card"><div class="def-card-term">Snowball Sampling</div><div class="def-card-desc">Participants refer further participants. Ideal for hard-to-reach populations (e.g. undocumented workers, rare conditions).</div></div>
+  </div>
+
+  <div class="section-title"><span class="st-icon">📊</span> Precision &amp; Confidence</div>
+  <div class="two-col">
+    <div class="card-white"><h3>Precision</h3><p>How close the sample estimate is to the true population value. Measured by the standard error (margin of error). More precision = smaller margin = larger sample needed.</p></div>
+    <div class="card-white"><h3>Confidence</h3><p>The probability that the true population value falls within the stated range. Common levels: 90%, 95%, 99%. Higher confidence = larger sample needed.</p></div>
+  </div>
+  <div class="callout callout-slate">
+    <div class="callout-label">⚠️ Trade-off</div>
+    <p>For a <strong>fixed sample size</strong>, you cannot simultaneously maximise both precision and confidence — increasing one reduces the other. Larger samples improve <em>both</em>.</p>
+  </div>
+
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="fill-ch13"></div>
+  <div id="match-ch13"></div>
+
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="fc-ch13"></div>
+
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="quiz-ch13"></div>
+
+  <div class="tutor-box">
+    <div class="tutor-top"><div class="tutor-dot"></div><div><div class="tutor-label">Chapter 13 Tutor</div><div class="tutor-sublabel">Sampling questions</div></div></div>
+    <div class="tutor-msgs" id="tm-ch13"><div class="tutor-msg bot">Ask me about sampling methods, sample size, or probability vs non-probability sampling!</div></div>
+    <div class="tutor-chips">
+      <button class="tutor-chip" onclick="tutorChip('ch13','Stratified vs cluster sampling — key differences and when to use each')">Stratified vs Cluster</button>
+      <button class="tutor-chip" onclick="tutorChip('ch13','What factors influence the required sample size?')">Sample size factors</button>
+      <button class="tutor-chip" onclick="tutorChip('ch13','Give me 2 tricky MCQs about sampling for the BR1 exam')">Quiz me</button>
+    </div>
+    <div class="tutor-input-row">
+      <input class="tutor-input" id="ti-ch13" placeholder="Ask about Ch.13…" onkeydown="tutorKey(event,'ch13')">
+      <button class="tutor-send" id="tb-ch13" onclick="tutorSend('ch13')">Send →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     MOCK EXAM
+══════════════════════════════════════════ -->
+<section id="mockexam" class="panel">
+
+  <!-- INTRO -->
+  <div id="mock-intro">
+    <div class="mock-hero">
+      <div class="mock-hero-eyebrow">🎯 Practice Exam</div>
+      <h2>BR1 Mock Exam</h2>
+      <p>Two full mock exams, 20 questions each, covering all 6 chapters. Complete Exam A, then switch to Exam B for a fresh set of questions. Full review with explanations after each attempt.</p>
+      <div class="mock-info-row">
+        <div class="mock-info-item"><div class="mii-val">20</div><div class="mii-label">Questions</div></div>
+        <div class="mock-info-item"><div class="mii-val">30</div><div class="mii-label">Minutes</div></div>
+        <div class="mock-info-item"><div class="mii-val">6</div><div class="mii-label">Chapters</div></div>
+        <div class="mock-info-item"><div class="mii-val">55%</div><div class="mii-label">Pass mark</div></div>
+      </div>
+      <button class="mock-start-btn" onclick="startMockExam()" id="mock-start-btn">Start Exam A →</button>
+      <div class="mock-gen-note" id="exam-count-badge">Exam A — 20 questions across all chapters</div>
+    </div>
+  </div>
+
+  <!-- EXAM IN PROGRESS -->
+  <div class="mock-active" id="mock-active">
+    <div class="exam-topbar">
+      <div>
+        <div style="font-size:11px;color:var(--ink-mute);font-family:'Inconsolata',monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Time remaining</div>
+        <div class="exam-timer" id="exam-timer">30:00</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="exam-progress-label" id="exam-progress-label">1 / 20</div>
+        <div style="font-size:11px;color:var(--ink-mute);margin-top:2px;">questions</div>
+      </div>
+    </div>
+
+    <div class="exam-pbar-outer">
+      <div class="exam-pbar-inner" id="exam-pbar" style="width:5%"></div>
+    </div>
+
+    <div class="exam-dot-row" id="exam-dot-row"></div>
+
+    <div class="exam-qcard">
+      <div class="exam-qmeta" id="exam-qmeta">Question 1 of 20 · Ch.2</div>
+      <div class="exam-qtext" id="exam-qtext">Loading…</div>
+      <div class="exam-opts" id="exam-opts"></div>
+      <div class="exam-nav-row">
+        <button class="exam-nav-btn" id="exam-prev-btn" onclick="examPrev()" disabled>← Previous</button>
+        <button class="exam-nav-btn primary" id="exam-next-btn" onclick="examNext()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="mock-results" id="mock-results">
+    <div class="results-hero">
+      <div style="font-size:13px;color:var(--ink-mute);font-family:'Inconsolata',monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Your Score</div>
+      <div class="results-score" id="results-score">—%</div>
+      <div class="results-verdict" id="results-verdict"></div>
+      <div class="results-stats-row">
+        <div class="rstat"><div class="rstat-val" id="rstat-correct" style="color:var(--teal)">—</div><div class="rstat-label">Correct</div></div>
+        <div class="rstat"><div class="rstat-val" id="rstat-wrong"   style="color:var(--rose)">—</div><div class="rstat-label">Wrong</div></div>
+        <div class="rstat"><div class="rstat-val" id="rstat-pct">—</div><div class="rstat-label">Score</div></div>
+        <div class="rstat"><div class="rstat-val" id="rstat-time">—</div><div class="rstat-label">Time used</div></div>
+      </div>
+      <div class="results-actions">
+        <button class="res-btn primary" onclick="resetMockExam()">🔄 New Exam (different questions)</button>
+        <button class="res-btn" onclick="document.getElementById('review-list').scrollIntoView({behavior:'smooth'})">📋 Review Answers</button>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="st-icon">📋</span> Full Answer Review</div>
+    <div class="review-list" id="review-list"></div>
+  </div>
+
+</section>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     SCRIPTS (order matters)
+══════════════════════════════════════════ -->
+<script src="data.js"></script>
+<script src="flashcards.js"></script>
+<script src="exercises.js"></script>
+<script src="mockexam.js"></script>
+<script src="tutor.js"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
