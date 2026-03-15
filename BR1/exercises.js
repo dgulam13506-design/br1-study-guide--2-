@@ -1,57 +1,58 @@
 // ============================================================
 //  BR1 STUDY GUIDE — exercises.js
-//  Handles: chapter quizzes, fill-in-the-blank, matching
+//  Chapter quizzes · Fill-in-the-blank · Matching
 // ============================================================
+
+// Keep shuffled defs in plain JS — never on DOM nodes
+var MATCH_STATE = {};
 
 // ─────────────────────────────────────────────
 // CHAPTER QUIZZES
 // ─────────────────────────────────────────────
 function renderChapterQuiz(chId) {
-  const container = document.getElementById(`quiz-${chId}`);
+  var container = document.getElementById('quiz-' + chId);
   if (!container || !CHAPTER_QUIZZES[chId]) return;
 
-  const qs = CHAPTER_QUIZZES[chId];
-  const letters = ['A', 'B', 'C', 'D'];
-  let html = '';
+  var qs = CHAPTER_QUIZZES[chId];
+  var letters = ['A','B','C','D'];
+  var html = '';
 
-  qs.forEach((q, qi) => {
-    html += `
-      <div class="quiz-card">
-        <div class="quiz-qnum">Question ${qi + 1} of ${qs.length}</div>
-        <div class="quiz-qtext">${q.q}</div>
-        <div class="quiz-options">
-          ${q.opts.map((opt, oi) => `
-            <div class="quiz-opt" id="qo-${chId}-${qi}-${oi}" onclick="answerChapterQ('${chId}',${qi},${oi})">
-              <span class="quiz-opt-letter">${letters[oi]}</span>
-              <span>${opt}</span>
-            </div>
-          `).join('')}
-        </div>
-        <div class="quiz-feedback" id="qfb-${chId}-${qi}"></div>
-      </div>`;
-  });
+  for (var qi = 0; qi < qs.length; qi++) {
+    var q = qs[qi];
+    html += '<div class="quiz-card">';
+    html += '<div class="quiz-qnum">Question ' + (qi+1) + ' of ' + qs.length + '</div>';
+    html += '<div class="quiz-qtext">' + _escQ(q.q) + '</div>';
+    html += '<div class="quiz-options">';
+    for (var oi = 0; oi < q.opts.length; oi++) {
+      html += '<div class="quiz-opt" id="qo-' + chId + '-' + qi + '-' + oi + '" ' +
+              'onclick="answerQ(\'' + chId + '\',' + qi + ',' + oi + ')">' +
+              '<span class="quiz-opt-letter">' + letters[oi] + '</span>' +
+              '<span>' + _escQ(q.opts[oi]) + '</span></div>';
+    }
+    html += '</div>';
+    html += '<div class="quiz-feedback" id="qfb-' + chId + '-' + qi + '" style="display:none"></div>';
+    html += '</div>';
+  }
 
   container.innerHTML = html;
 }
 
-function answerChapterQ(chId, qi, oi) {
-  const q = CHAPTER_QUIZZES[chId][qi];
-  const allOpts = document.querySelectorAll(`[id^="qo-${chId}-${qi}-"]`);
+function answerQ(chId, qi, chosen) {
+  var q = CHAPTER_QUIZZES[chId][qi];
 
-  // Lock all options
-  allOpts.forEach(el => {
-    el.classList.add('locked');
+  // Lock all 4 options for this question
+  for (var oi = 0; oi < 4; oi++) {
+    var el = document.getElementById('qo-' + chId + '-' + qi + '-' + oi);
+    if (!el) continue;
     el.onclick = null;
-  });
+    el.style.cursor = 'default';
+    if (oi === q.c)                     el.classList.add('opt-correct');
+    else if (oi === chosen && oi !== q.c) el.classList.add('opt-wrong');
+  }
 
-  allOpts.forEach((el, idx) => {
-    if (idx === q.c)            el.classList.add('opt-correct');
-    else if (idx === oi)        el.classList.add('opt-wrong');
-  });
-
-  const fb = document.getElementById(`qfb-${chId}-${qi}`);
+  var fb = document.getElementById('qfb-' + chId + '-' + qi);
   fb.style.display = 'block';
-  if (oi === q.c) {
+  if (chosen === q.c) {
     fb.className = 'quiz-feedback feedback-correct';
     fb.textContent = '✓ Correct! ' + q.fb;
   } else {
@@ -64,58 +65,66 @@ function answerChapterQ(chId, qi, oi) {
 // FILL-IN-THE-BLANK
 // ─────────────────────────────────────────────
 function renderFillExercise(chId) {
-  const container = document.getElementById(`fill-${chId}`);
-  const data = FILL_EXERCISES[chId];
+  var container = document.getElementById('fill-' + chId);
+  var data = FILL_EXERCISES[chId];
   if (!container || !data) return;
 
-  // Build sentence with inputs replacing [word] markers
-  let html = data.sentence;
-  data.blanks.forEach(b => {
-    html = html.replace(
+  // Build the sentence — replace each [answer] marker with a numbered input
+  var sentence = data.sentence;
+  for (var i = 0; i < data.blanks.length; i++) {
+    sentence = sentence.replace(
       /\[[^\]]+\]/,
-      `<input class="blank-input" id="${b.id}" placeholder="?" autocomplete="off" spellcheck="false">`
+      '<input class="blank-input" id="' + data.blanks[i].id + '" ' +
+      'placeholder="?" autocomplete="off" spellcheck="false">'
     );
-  });
+  }
 
-  container.innerHTML = `
-    <div class="exercise-block">
-      <h4>🖊️ Fill in the Blank</h4>
-      <p class="fill-text">${html}</p>
-      <button class="ex-btn" onclick="checkFill('${chId}')">Check Answers</button>
-      <div class="ex-result" id="fill-result-${chId}"></div>
-    </div>`;
+  container.innerHTML =
+    '<div class="exercise-block">' +
+      '<h4>🖊️ Fill in the Blank</h4>' +
+      '<div class="fill-text">' + sentence + '</div>' +
+      '<button class="ex-btn" onclick="checkFill(\'' + chId + '\')">Check Answers</button>' +
+      '<div class="ex-result" id="fill-result-' + chId + '"></div>' +
+    '</div>';
 }
 
 function checkFill(chId) {
-  const data = FILL_EXERCISES[chId];
-  let correct = 0;
+  var data    = FILL_EXERCISES[chId];
+  var correct = 0;
 
-  data.blanks.forEach(b => {
-    const input = document.getElementById(b.id);
-    if (!input) return;
-    const val = input.value.trim().toLowerCase();
-    const isCorrect = b.answers.some(a => a.toLowerCase() === val);
+  for (var i = 0; i < data.blanks.length; i++) {
+    var b     = data.blanks[i];
+    var input = document.getElementById(b.id);
+    if (!input) continue;
+
+    var val       = input.value.trim().toLowerCase();
+    var isCorrect = false;
+    for (var j = 0; j < b.answers.length; j++) {
+      if (b.answers[j].toLowerCase() === val) { isCorrect = true; break; }
+    }
+
     input.classList.remove('b-correct', 'b-wrong');
     input.classList.add(isCorrect ? 'b-correct' : 'b-wrong');
     if (isCorrect) correct++;
-  });
+  }
 
-  const result = document.getElementById(`fill-result-${chId}`);
-  const total = data.blanks.length;
-  result.className = `ex-result ${correct === total ? 'good' : correct > 0 ? '' : 'bad'}`;
-  result.textContent = `${correct} / ${total} correct`;
+  var total  = data.blanks.length;
+  var result = document.getElementById('fill-result-' + chId);
+  result.className  = 'ex-result ' + (correct === total ? 'good' : 'bad');
+  result.textContent = correct + ' / ' + total + ' correct';
 
+  // After a short delay, show the correct answer as placeholder on wrong inputs
   if (correct < total) {
-    // Show correct answers after attempt
-    setTimeout(() => {
-      data.blanks.forEach(b => {
-        const input = document.getElementById(b.id);
-        if (input && input.classList.contains('b-wrong')) {
-          input.placeholder = b.answers[0];
-          input.value = '';
+    setTimeout(function() {
+      for (var i = 0; i < data.blanks.length; i++) {
+        var b2    = data.blanks[i];
+        var inp   = document.getElementById(b2.id);
+        if (inp && inp.classList.contains('b-wrong')) {
+          inp.value       = '';
+          inp.placeholder = b2.answers[0];
         }
-      });
-    }, 1200);
+      }
+    }, 1000);
   }
 }
 
@@ -123,66 +132,86 @@ function checkFill(chId) {
 // MATCHING EXERCISE
 // ─────────────────────────────────────────────
 function renderMatchExercise(chId) {
-  const container = document.getElementById(`match-${chId}`);
-  const data = MATCH_EXERCISES[chId];
+  var container = document.getElementById('match-' + chId);
+  var data      = MATCH_EXERCISES[chId];
   if (!container || !data) return;
 
-  // Shuffle the definitions for the dropdown
-  const defs = [...data.pairs.map(p => p.def)].sort(() => Math.random() - 0.5);
-  const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+  // Shuffle definitions and store in plain JS object
+  var defs = [];
+  for (var i = 0; i < data.pairs.length; i++) defs.push(data.pairs[i].def);
+  defs = _shuffle(defs);
+  MATCH_STATE[chId] = defs;   // <-- stored in JS, not on DOM
 
-  // Build a legend of definitions
-  let legend = '<div style="font-size:12px;color:var(--ink-mute);margin-bottom:12px;">';
-  defs.forEach((d, i) => {
-    legend += `<div style="margin-bottom:4px;"><span style="font-family:\'Inconsolata\',monospace;font-weight:700;margin-right:6px;">${letters[i]}.</span>${d}</div>`;
-  });
+  var letters = ['A','B','C','D','E','F'];
+
+  // Legend
+  var legend = '<div class="match-legend">';
+  for (var i = 0; i < defs.length; i++) {
+    legend += '<div class="match-legend-row">' +
+              '<span class="match-legend-letter">' + letters[i] + '.</span>' +
+              _escQ(defs[i]) + '</div>';
+  }
   legend += '</div>';
 
-  // Build the matching rows
-  let rows = '';
-  data.pairs.forEach((pair, idx) => {
-    const opts = defs.map((d, i) => `<option value="${i}">${letters[i]}</option>`).join('');
-    rows += `
-      <div class="match-row">
-        <span class="match-term">${pair.term}</span>
-        <select class="match-sel" id="ms-${chId}-${idx}">
-          <option value="-1">— pick —</option>
-          ${opts}
-        </select>
-      </div>`;
-  });
+  // Rows with select dropdowns
+  var rows = '';
+  for (var i = 0; i < data.pairs.length; i++) {
+    var opts = '<option value="-1">— choose —</option>';
+    for (var j = 0; j < defs.length; j++) {
+      opts += '<option value="' + j + '">' + letters[j] + '</option>';
+    }
+    rows += '<div class="match-row">' +
+            '<span class="match-term">' + _escQ(data.pairs[i].term) + '</span>' +
+            '<select class="match-sel" id="ms-' + chId + '-' + i + '">' + opts + '</select>' +
+            '</div>';
+  }
 
-  container.innerHTML = `
-    <div class="exercise-block">
-      <h4>🔗 Match the Term to its Description</h4>
-      ${legend}
-      ${rows}
-      <button class="ex-btn" onclick="checkMatch('${chId}')">Check Answers</button>
-      <div class="ex-result" id="match-result-${chId}"></div>
-    </div>`;
-
-  // Store shuffled order for checking
-  container._shuffledDefs = defs;
+  container.innerHTML =
+    '<div class="exercise-block">' +
+      '<h4>🔗 Match the Term to its Description</h4>' +
+      legend +
+      rows +
+      '<button class="ex-btn" onclick="checkMatch(\'' + chId + '\')">Check Answers</button>' +
+      '<div class="ex-result" id="match-result-' + chId + '"></div>' +
+    '</div>';
 }
 
 function checkMatch(chId) {
-  const container = document.getElementById(`match-${chId}`);
-  const data = MATCH_EXERCISES[chId];
-  const defs = container._shuffledDefs;
-  let correct = 0;
+  var data    = MATCH_EXERCISES[chId];
+  var defs    = MATCH_STATE[chId];   // read from plain JS object
+  var correct = 0;
 
-  data.pairs.forEach((pair, idx) => {
-    const sel = document.getElementById(`ms-${chId}-${idx}`);
-    if (!sel) return;
-    const chosen = parseInt(sel.value);
-    const isCorrect = chosen >= 0 && defs[chosen] === pair.def;
+  for (var i = 0; i < data.pairs.length; i++) {
+    var sel    = document.getElementById('ms-' + chId + '-' + i);
+    if (!sel) continue;
+    var chosen    = parseInt(sel.value, 10);
+    var isCorrect = chosen >= 0 && defs[chosen] === data.pairs[i].def;
     sel.classList.remove('m-correct', 'm-wrong');
     sel.classList.add(isCorrect ? 'm-correct' : 'm-wrong');
     if (isCorrect) correct++;
-  });
+  }
 
-  const result = document.getElementById(`match-result-${chId}`);
-  const total = data.pairs.length;
-  result.className = `ex-result ${correct === total ? 'good' : 'bad'}`;
-  result.textContent = `${correct} / ${total} correct`;
+  var result = document.getElementById('match-result-' + chId);
+  result.className  = 'ex-result ' + (correct === data.pairs.length ? 'good' : 'bad');
+  result.textContent = correct + ' / ' + data.pairs.length + ' correct';
+}
+
+// ─────────────────────────────────────────────
+// HELPERS
+// ─────────────────────────────────────────────
+function _shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+function _escQ(str) {
+  return String(str)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
 }
