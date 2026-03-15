@@ -3,7 +3,7 @@
 //  AI Tutor chat for each chapter panel + overview
 // ============================================================
 
-const TUTOR_SYSTEM = `You are a concise, exam-focused tutor for the BR1 (Business Research Methods) exam at a Dutch university of applied sciences. The exam is based on Bougie & Sekaran "Research Methods for Business" (7th/8th/9th ed.).
+var TUTOR_SYSTEM = `You are a concise, exam-focused tutor for the BR1 (Business Research Methods) exam at a Dutch university of applied sciences. The exam is based on Bougie & Sekaran "Research Methods for Business" (7th/8th/9th ed.).
 
 Topics:
 - Ch.2: 8 hallmarks (purposiveness, rigor, testability, replicability, precision & confidence, objectivity, generalizability, parsimony); hypothetico-deductive 7-step method; research philosophies (positivism, constructionism, critical realism, pragmatism)
@@ -20,7 +20,7 @@ When generating MCQs, use format:
 
 Keep responses focused, concise, and useful for exam preparation.`;
 
-const tutorHistory = {};
+var tutorHistory = {};
 
 function tutorSend(panelId) {
   const input = document.getElementById(`ti-${panelId}`);
