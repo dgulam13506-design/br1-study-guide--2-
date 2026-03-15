@@ -4,9 +4,9 @@
 //  Alternates between Exam A and Exam B on each retake.
 // ============================================================
 
-const TIMER_SECONDS = 30 * 60;
+var TIMER_SECONDS = 30 * 60;
 
-const EXAM_A = [
+var EXAM_A = [
   { ch:'Ch.2', q:"Which hallmark of scientific research refers to the ability of other researchers to reproduce the same results using the same methodology?", opts:["Objectivity","Generalizability","Replicability","Parsimony"], c:2, fb:"Replicability means other researchers should obtain the same results when they repeat the study using the same design, sample type, and conditions." },
   { ch:'Ch.2', q:"In the hypothetico-deductive method, what comes directly AFTER 'Develop hypotheses'?", opts:["Data collection","Interpret results","Determine measures","Define the problem statement"], c:2, fb:"Step 4 is 'Determine measures' — deciding how to operationalise and measure the variables. Data collection is step 5." },
   { ch:'Ch.2', q:"A researcher presents the simplest possible model that still fully explains the phenomenon. This demonstrates:", opts:["Rigor","Testability","Parsimony","Purposiveness"], c:2, fb:"Parsimony = economy in explanation. The simplest adequate model is preferred over unnecessarily complex ones." },
@@ -29,7 +29,7 @@ const EXAM_A = [
   { ch:'Ch.13', q:"A researcher uses snowball sampling. This is most appropriate when:", opts:["The population is large and well-defined","A sampling frame is readily available","The population is hard to reach with no sampling frame","Maximum statistical generalizability is required"], c:2, fb:"Snowball sampling is used for hard-to-reach populations where no sampling frame exists. It is non-probability sampling." },
 ];
 
-const EXAM_B = [
+var EXAM_B = [
   { ch:'Ch.2', q:"'Purposiveness' as a hallmark of scientific research means:", opts:["Results can be generalised to other contexts","The study has a clear, defined aim or focus","The research method is very strict","Findings can be reproduced by others"], c:1, fb:"Purposiveness means the research has a definite, focused purpose. The researcher knows what they are investigating from the start." },
   { ch:'Ch.2', q:"Which hallmark requires conclusions to be drawn from empirical data rather than the researcher's personal beliefs?", opts:["Testability","Rigor","Generalizability","Objectivity"], c:3, fb:"Objectivity means research conclusions are based on data and facts, not on the researcher's own values or subjective judgements." },
   { ch:'Ch.2', q:"'Precision' in research refers to:", opts:["The probability the true value lies within the confidence interval","How close the sample estimate is to the true population value","The ability to apply findings to other settings","The consistency of repeated measurements"], c:1, fb:"Precision = closeness of the sample estimate to the true population value. It is measured by the standard error / margin of error." },
@@ -53,7 +53,7 @@ const EXAM_B = [
 ];
 
 // ─── STATE ───
-const mockState = {
+var mockState = {
   questions:     [],
   answers:       {},
   current:       0,
@@ -63,8 +63,8 @@ const mockState = {
   examIndex:     0,
 };
 
-const EXAMS       = [EXAM_A, EXAM_B];
-const EXAM_LABELS = ['A', 'B'];
+var EXAMS       = [EXAM_A, EXAM_B];
+var EXAM_LABELS = ['A', 'B'];
 
 // ─── START ───
 function startMockExam() {
