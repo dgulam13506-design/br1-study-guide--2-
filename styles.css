@@ -617,48 +617,7 @@ body {
 .ex-result.bad  { color: var(--rose); }
 
 /* ============ AI TUTOR ============ */
-.tutor-box {
-  background: white;
-  border: 1.5px solid var(--warm-200);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-top: 40px;
-  box-shadow: var(--shadow);
-}
-.tutor-top {
-  background: var(--paper);
-  padding: 16px 22px;
-  border-bottom: 1px solid var(--warm-200);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.tutor-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow: 0 0 6px var(--teal);
-  animation: blink 2.4s infinite;
-}
 @keyframes blink { 0%,100%{opacity:1} 55%{opacity:0.3} }
-.tutor-label { font-weight: 700; font-size: 14px; }
-.tutor-sublabel { font-size: 11px; color: var(--ink-mute); }
-.tutor-msgs {
-  padding: 18px 22px;
-  min-height: 80px;
-  max-height: 300px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.tutor-msg {
-  padding: 10px 14px;
-  border-radius: 10px;
-  font-size: 13px;
-  line-height: 1.6;
-  max-width: 88%;
-}
 .tutor-msg.user {
   background: var(--amber-bg);
   border: 1px solid rgba(201,123,46,0.2);
@@ -679,57 +638,9 @@ body {
   border: none;
   padding: 4px 0;
 }
-.tutor-chips {
-  padding: 0 22px 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.tutor-chip {
-  padding: 5px 12px;
-  background: var(--warm-100);
-  border: 1px solid var(--warm-200);
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-mute);
-  cursor: pointer;
-  font-family: 'Instrument Sans', sans-serif;
-  transition: all 0.18s;
-}
 .tutor-chip:hover { background: var(--amber-bg); border-color: var(--amber); color: var(--amber); }
-.tutor-input-row {
-  padding: 14px 22px;
-  border-top: 1px solid var(--warm-200);
-  display: flex;
-  gap: 8px;
-}
-.tutor-input {
-  flex: 1;
-  background: var(--cream);
-  border: 1.5px solid var(--warm-200);
-  border-radius: var(--radius-sm);
-  padding: 9px 14px;
-  font-size: 13px;
-  font-family: 'Instrument Sans', sans-serif;
-  color: var(--ink);
-  outline: none;
-  transition: border-color 0.18s;
-}
 .tutor-input:focus { border-color: var(--amber); background: white; }
 .tutor-input::placeholder { color: var(--warm-400); }
-.tutor-send {
-  padding: 9px 20px;
-  background: var(--ink);
-  color: var(--cream);
-  border: none;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  font-family: 'Instrument Sans', sans-serif;
-  transition: opacity 0.18s;
-}
 .tutor-send:hover { opacity: 0.8; }
 .tutor-send:disabled { opacity: 0.35; cursor: not-allowed; }
 
