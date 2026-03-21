@@ -115,9 +115,9 @@ body {
 /* ============ NAV ============ */
 .site-nav {
   position: sticky;
-  top: 0;
+  top: 44px; /* sits below the 44px subject bar */
   z-index: 200;
-  background: rgba(250,247,242,0.95);
+  background: rgba(250,247,242,0.96);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--warm-200);
   display: flex;
@@ -1233,32 +1233,125 @@ body {
   box-shadow: 0 8px 24px rgba(45,122,110,0.35);
 }
 
-/* ── ECONOMICS theme ── */
+/* ══════════════════════════════════════════
+   ECONOMICS THEME + SUBJECT SWITCHER
+══════════════════════════════════════════ */
+
 :root {
-  --econ-green: #2a7f4f;
-  --econ-lt:    #e4f4ec;
+  --econ-green:  #1e6e45;
+  --econ-mid:    #2a8f5a;
+  --econ-lt:     #e6f4ed;
+  --econ-bg:     #f2faf6;
+  --econ-border: rgba(30,110,69,0.2);
 }
-.nav-divider {
-  color: var(--warm-200);
-  padding: 14px 6px;
-  font-size: 16px;
-  user-select: none;
-  flex-shrink: 0;
+
+/* ── Subject switcher bar ── */
+.subject-bar {
+  display: flex;
+  gap: 0;
+  background: var(--ink);
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 300;
 }
-.nav-subject-label {
-  padding: 14px 4px 14px 2px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--econ-green);
+.subject-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.45);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.18s;
+  letter-spacing: 0.01em;
+}
+.subject-btn:hover { color: rgba(255,255,255,0.8); }
+.subject-btn.active {
+  color: white;
+  border-bottom-color: var(--amber);
+}
+.subject-btn.active[id="subj-econ"] { border-bottom-color: #4ec98a; }
+.subject-icon { font-size: 15px; }
+.subject-name { font-weight: 600; }
+.subject-code {
   font-family: 'Inconsolata', monospace;
-  flex-shrink: 0;
-  align-self: center;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.1);
 }
-.nav-btn.econ-btn { color: var(--ink-mute); }
-.nav-btn.econ-btn:hover { color: var(--econ-green); }
-.nav-btn.econ-btn.active { color: var(--econ-green); border-bottom-color: var(--econ-green); }
+.subject-btn.active .subject-code { background: rgba(255,255,255,0.2); }
+
+/* ── ECON header ── */
+.econ-header {
+  background: var(--econ-green) !important;
+  border-bottom: none !important;
+}
+.econ-header::after {
+  background: linear-gradient(90deg, #4ec98a, #1e6e45, transparent) !important;
+}
+.econ-header .header-eyebrow { color: rgba(255,255,255,0.65) !important; }
+.econ-header .header-eyebrow::before { background: rgba(255,255,255,0.4) !important; }
+.econ-h1 { color: white !important; }
+.econ-h1 em { color: #7de8ad !important; font-style: italic; }
+.econ-header .header-pill {
+  background: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  color: rgba(255,255,255,0.85) !important;
+}
+
+/* ── ECON sub-nav ── */
+.econ-subnav {
+  background: rgba(30,110,69,0.96) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.12) !important;
+}
+.econ-subnav .nav-btn {
+  color: rgba(255,255,255,0.55) !important;
+  border-bottom-color: transparent !important;
+}
+.econ-subnav .nav-btn:hover { color: white !important; }
+.econ-subnav .nav-btn.active {
+  color: white !important;
+  border-bottom-color: #7de8ad !important;
+}
+.econ-subnav .nav-btn.exam-btn { color: #7de8ad !important; font-weight: 700; }
+.econ-subnav .nav-week { color: rgba(255,255,255,0.35) !important; }
+
+/* ── ECON main content area ── */
+.econ-main { background: var(--econ-bg); min-height: 100vh; }
+.econ-main .section-title { border-bottom-color: rgba(30,110,69,0.15); }
+.econ-main .def-card { border-color: var(--econ-border); }
+.econ-main .def-card:hover { border-color: var(--econ-mid); box-shadow: 0 4px 16px rgba(30,110,69,0.12); }
+.econ-main .styled-table { }
+.econ-main .styled-table thead th { background: var(--econ-lt); }
+.econ-main .fc-front { border-color: var(--econ-border); }
+.econ-main .fc-back { background: var(--econ-lt); border-color: var(--econ-border); }
+.econ-main .fc-ctrl-btn:hover { border-color: var(--econ-green); color: var(--econ-green); }
+.econ-main .ex-btn:hover { background: var(--econ-lt); border-color: var(--econ-green); color: var(--econ-green); }
+.econ-main .blank-input { border-bottom-color: var(--econ-mid); }
+.econ-main .match-legend-letter { color: var(--econ-mid); }
+.econ-main .quiz-opt:hover:not(.locked) { border-color: var(--econ-mid); background: var(--econ-lt); }
+.econ-main .mock-hero { background: white; }
+.econ-main .mock-start-btn { background: var(--econ-green); }
+.econ-main .mock-start-btn:hover { background: #155233; }
+.econ-main .exam-pbar-inner { background: var(--econ-mid); }
+.econ-main .exam-dot.answered { background: rgba(30,110,69,0.15); border-color: var(--econ-mid); color: var(--econ-mid); }
+.econ-main .exam-dot.current { background: var(--econ-green); border-color: var(--econ-green); }
+.econ-main .exam-nav-btn.primary { background: var(--econ-green); border-color: var(--econ-green); }
+.econ-main .exam-nav-btn.primary:hover { background: #155233; }
+.econ-main .res-btn.primary { background: var(--econ-green); border-color: var(--econ-green); }
+.econ-main .review-card.rv-correct { border-left-color: var(--econ-mid); }
+
+/* ── Callout econ ── */
 .callout-econ {
   background: var(--econ-lt);
   border-left: 4px solid var(--econ-green);
@@ -1276,21 +1369,31 @@ body {
 }
 .callout-econ p { color: var(--ink-soft); line-height: 1.6; }
 .callout-econ strong { color: var(--ink); }
+
+/* ── ECON overview banner ── */
 .econ-banner {
-  background: var(--econ-lt);
-  border: 1.5px solid rgba(42,127,79,0.25);
+  background: var(--econ-green);
   border-radius: var(--radius-lg);
-  padding: 26px 28px;
+  padding: 28px 30px;
   margin-bottom: 30px;
   display: flex;
   gap: 20px;
   align-items: center;
   flex-wrap: wrap;
+  color: white;
 }
 .econ-banner h3 {
   font-family: 'Fraunces', serif;
-  font-size: 18px; font-weight: 600;
-  color: var(--ink); margin-bottom: 10px;
+  font-size: 20px; font-weight: 700;
+  color: white; margin-bottom: 10px;
 }
+.econ-banner .es-val { color: #7de8ad; }
+.econ-banner .es-label { color: rgba(255,255,255,0.6); }
+.econ-banner .exam-banner-icon { font-size: 38px; }
+
+/* ── ECON overview cards ── */
 .ov-card.ec-card::before { background: var(--econ-green); }
-.ov-card.ec-card:hover { border-color: var(--econ-green); }
+.ov-card.ec-card:hover { border-color: var(--econ-mid); box-shadow: 0 4px 16px rgba(30,110,69,0.15); }
+
+/* ── ECON chapter header number blocks ── */
+.econ-main .ch-number-block { background: var(--econ-green) !important; }

@@ -11,7 +11,22 @@
 <!-- ══════════════════════════════════════════
      HEADER
 ══════════════════════════════════════════ -->
-<header class="site-header">
+<!-- ══ SUBJECT SWITCHER (top bar) ══ -->
+<div class="subject-bar">
+  <button class="subject-btn active" id="subj-br1" onclick="switchSubject('br1')">
+    <span class="subject-icon">📊</span>
+    <span class="subject-name">Business Research</span>
+    <span class="subject-code">BR1</span>
+  </button>
+  <button class="subject-btn" id="subj-econ" onclick="switchSubject('econ')">
+    <span class="subject-icon">📈</span>
+    <span class="subject-name">Economics</span>
+    <span class="subject-code">ECON</span>
+  </button>
+</div>
+
+<!-- ══ BR1 HEADER ══ -->
+<header class="site-header" id="header-br1">
   <div class="header-eyebrow">BR1 · 1025BR1_KT · Block 3</div>
   <h1>Business Research<br><em>Methods</em> Study Guide</h1>
   <div class="header-pills">
@@ -22,31 +37,42 @@
   </div>
 </header>
 
-<!-- ══════════════════════════════════════════
-     NAVIGATION
-══════════════════════════════════════════ -->
-<nav class="site-nav">
-  <button class="nav-btn active"    onclick="showPanel('overview')">Overview</button>
-  <button class="nav-btn"           onclick="showPanel('ch2')"><span class="nav-week">W1</span>Scientific Approach</button>
-  <button class="nav-btn"           onclick="showPanel('ch6')"><span class="nav-week">W2</span>Research Design</button>
-  <button class="nav-btn"           onclick="showPanel('ch9')"><span class="nav-week">W3</span>Questionnaires</button>
-  <button class="nav-btn"           onclick="showPanel('ch11')"><span class="nav-week">W4</span>Measurement</button>
-  <button class="nav-btn"           onclick="showPanel('ch12')"><span class="nav-week">W4</span>Scaling &amp; Validity</button>
-  <button class="nav-btn"           onclick="showPanel('ch13')"><span class="nav-week">W5</span>Sampling</button>
-  <button class="nav-btn exam-btn"  onclick="showPanel('mockexam')">🎯 Mock Exam</button>
-  <span class="nav-divider">|</span>
-  <span class="nav-subject-label">ECON</span>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec-overview')">Overview</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec1')">Welcome</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec2')">Scarcity</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec3')">Demand &amp; Supply</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec5')">Elasticity</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec7')">Production &amp; Cost</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec8')">Perfect Competition</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec9')">Monopoly</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec10')">Oligopoly</button>
-  <button class="nav-btn econ-btn" onclick="showPanel('ec12')">Externalities</button>
-  <button class="nav-btn exam-btn econ-btn" onclick="showPanel('ec-mockexam')">🎯 Econ Exam</button>
+<!-- ══ ECON HEADER ══ -->
+<header class="site-header econ-header" id="header-econ" style="display:none">
+  <div class="header-eyebrow" style="color:var(--econ-green)">── ECON · Principles of Economics 3e</div>
+  <h1 class="econ-h1"><em>Economics</em><br>Study Guide</h1>
+  <div class="header-pills">
+    <span class="header-pill">📖 Shapiro, MacDonald &amp; Greenlaw</span>
+    <span class="header-pill">📚 OpenStax 3rd Edition</span>
+    <span class="header-pill">🎯 Chapters 1–13</span>
+  </div>
+</header>
+
+<!-- ══ BR1 SUB-NAV ══ -->
+<nav class="site-nav" id="subnav-br1">
+  <button class="nav-btn active" onclick="showPanel('overview')">Overview</button>
+  <button class="nav-btn" onclick="showPanel('ch2')"><span class="nav-week">W1</span>Scientific Approach</button>
+  <button class="nav-btn" onclick="showPanel('ch6')"><span class="nav-week">W2</span>Research Design</button>
+  <button class="nav-btn" onclick="showPanel('ch9')"><span class="nav-week">W3</span>Questionnaires</button>
+  <button class="nav-btn" onclick="showPanel('ch11')"><span class="nav-week">W4</span>Measurement</button>
+  <button class="nav-btn" onclick="showPanel('ch12')"><span class="nav-week">W4</span>Scaling &amp; Validity</button>
+  <button class="nav-btn" onclick="showPanel('ch13')"><span class="nav-week">W5</span>Sampling</button>
+  <button class="nav-btn exam-btn" onclick="showPanel('mockexam')">🎯 Mock Exam</button>
+</nav>
+
+<!-- ══ ECON SUB-NAV ══ -->
+<nav class="site-nav econ-subnav" id="subnav-econ" style="display:none">
+  <button class="nav-btn econ-btn active" onclick="showEconPanel('ec-overview')">Overview</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec1')"><span class="nav-week">Ch.1</span>Welcome</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec2')"><span class="nav-week">Ch.2</span>Scarcity</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec3')"><span class="nav-week">Ch.3</span>Demand &amp; Supply</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec5')"><span class="nav-week">Ch.5</span>Elasticity</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec7')"><span class="nav-week">Ch.7</span>Production &amp; Cost</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec8')"><span class="nav-week">Ch.8</span>Competition</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec9')"><span class="nav-week">Ch.9</span>Monopoly</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec10')"><span class="nav-week">Ch.10</span>Oligopoly</button>
+  <button class="nav-btn econ-btn" onclick="showEconPanel('ec12')"><span class="nav-week">Ch.12</span>Externalities</button>
+  <button class="nav-btn exam-btn econ-btn" onclick="showEconPanel('ec-mockexam')">🎯 Mock Exam</button>
 </nav>
 
 <main class="main">
@@ -695,9 +721,12 @@
 </section>
 
 
+</main><!-- end BR1 main -->
+
 <!-- ══════════════════════════════════════════
      ECONOMICS PANELS
 ══════════════════════════════════════════ -->
+<main class="main econ-main" id="econ-main" style="display:none">
 
 <!-- ECON OVERVIEW -->
 <section id="ec-overview" class="panel">
@@ -1056,7 +1085,7 @@
   </div>
 </section>
 
-</main>
+</main><!-- end ECON main -->
 
 <!-- ══════════════════════════════════════════
      SCRIPTS (order matters)
@@ -1066,7 +1095,7 @@
 <script src="BR1/exercises.js"></script>
 <script src="BR1/mockexam.js"></script>
 <script src="BR1/tutor.js"></script>
-<script src="ECON/econ_data.js"></script>
+<script src="ECON/data.js"></script>
 <script src="ECON/flashcards_econ.js"></script>
 <script src="ECON/exercises_econ.js"></script>
 <script src="ECON/mockexam_econ.js"></script>
