@@ -1232,3 +1232,65 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(45,122,110,0.35);
 }
+
+/* ── ECONOMICS theme ── */
+:root {
+  --econ-green: #2a7f4f;
+  --econ-lt:    #e4f4ec;
+}
+.nav-divider {
+  color: var(--warm-200);
+  padding: 14px 6px;
+  font-size: 16px;
+  user-select: none;
+  flex-shrink: 0;
+}
+.nav-subject-label {
+  padding: 14px 4px 14px 2px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--econ-green);
+  font-family: 'Inconsolata', monospace;
+  flex-shrink: 0;
+  align-self: center;
+}
+.nav-btn.econ-btn { color: var(--ink-mute); }
+.nav-btn.econ-btn:hover { color: var(--econ-green); }
+.nav-btn.econ-btn.active { color: var(--econ-green); border-bottom-color: var(--econ-green); }
+.callout-econ {
+  background: var(--econ-lt);
+  border-left: 4px solid var(--econ-green);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  font-size: 14px;
+}
+.callout-econ .callout-label {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: 'Inconsolata', monospace;
+  color: var(--econ-green);
+  margin-bottom: 6px;
+}
+.callout-econ p { color: var(--ink-soft); line-height: 1.6; }
+.callout-econ strong { color: var(--ink); }
+.econ-banner {
+  background: var(--econ-lt);
+  border: 1.5px solid rgba(42,127,79,0.25);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.econ-banner h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--ink); margin-bottom: 10px;
+}
+.ov-card.ec-card::before { background: var(--econ-green); }
+.ov-card.ec-card:hover { border-color: var(--econ-green); }

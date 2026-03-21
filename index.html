@@ -34,6 +34,19 @@
   <button class="nav-btn"           onclick="showPanel('ch12')"><span class="nav-week">W4</span>Scaling &amp; Validity</button>
   <button class="nav-btn"           onclick="showPanel('ch13')"><span class="nav-week">W5</span>Sampling</button>
   <button class="nav-btn exam-btn"  onclick="showPanel('mockexam')">🎯 Mock Exam</button>
+  <span class="nav-divider">|</span>
+  <span class="nav-subject-label">ECON</span>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec-overview')">Overview</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec1')">Welcome</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec2')">Scarcity</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec3')">Demand &amp; Supply</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec5')">Elasticity</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec7')">Production &amp; Cost</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec8')">Perfect Competition</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec9')">Monopoly</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec10')">Oligopoly</button>
+  <button class="nav-btn econ-btn" onclick="showPanel('ec12')">Externalities</button>
+  <button class="nav-btn exam-btn econ-btn" onclick="showPanel('ec-mockexam')">🎯 Econ Exam</button>
 </nav>
 
 <main class="main">
@@ -632,6 +645,7 @@
         <div class="exam-timer" id="exam-timer">30:00</div>
       </div>
       <div style="display:flex;align-items:center;gap:12px;">
+        <button class="pause-btn" id="pause-btn" onclick="togglePause()"><button class="pause-btn" id="pause-btn" onclick="togglePause()">⏸ Pause</button>#9646;<button class="pause-btn" id="pause-btn" onclick="togglePause()">⏸ Pause</button>#9646;&nbsp; Pause</button>
         <div style="text-align:right;">
           <div class="exam-progress-label" id="exam-progress-label">1 / 20</div>
           <div style="font-size:11px;color:var(--ink-mute);margin-top:2px;">questions</div>
@@ -680,6 +694,368 @@
 
 </section>
 
+
+<!-- ══════════════════════════════════════════
+     ECONOMICS PANELS
+══════════════════════════════════════════ -->
+
+<!-- ECON OVERVIEW -->
+<section id="ec-overview" class="panel">
+  <div class="econ-banner">
+    <div class="exam-banner-icon">📈</div>
+    <div>
+      <h3>Economics — Course Overview</h3>
+      <div class="exam-stats">
+        <div class="exam-stat"><div class="es-val">11</div><div class="es-label">Chapters</div></div>
+        <div class="exam-stat"><div class="es-val">Apr</div><div class="es-label">Exam month</div></div>
+        <div class="exam-stat"><div class="es-val">2h</div><div class="es-label">Exam duration</div></div>
+        <div class="exam-stat"><div class="es-val">3e</div><div class="es-label">OpenStax edition</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="overview-grid">
+    <div class="ov-card ec-card" onclick="showPanel('ec1')"><div class="ov-week">Week 2 · Ch.1</div><div class="ov-title">Welcome to Economics</div><div class="ov-desc">Scarcity, PPF, micro vs macro</div><div class="ov-tags"><span class="ov-tag">Scarcity</span><span class="ov-tag">PPF</span><span class="ov-tag">Factors</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec2')"><div class="ov-week">Week 2 · Ch.2</div><div class="ov-title">Choice &amp; Scarcity</div><div class="ov-desc">Opportunity cost, budget constraints</div><div class="ov-tags"><span class="ov-tag">Opportunity cost</span><span class="ov-tag">Budget constraint</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec3')"><div class="ov-week">Week 3 · Ch.3</div><div class="ov-title">Demand &amp; Supply</div><div class="ov-desc">Laws of D&amp;S, equilibrium, shifts</div><div class="ov-tags"><span class="ov-tag">Demand</span><span class="ov-tag">Supply</span><span class="ov-tag">Equilibrium</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec5')"><div class="ov-week">Week 5 · Ch.5</div><div class="ov-title">Elasticity</div><div class="ov-desc">PED, PES, income elasticity</div><div class="ov-tags"><span class="ov-tag">PED</span><span class="ov-tag">Elastic</span><span class="ov-tag">Inelastic</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec7')"><div class="ov-week">Week 6 · Ch.7</div><div class="ov-title">Production &amp; Cost</div><div class="ov-desc">Fixed/variable costs, MC, ATC</div><div class="ov-tags"><span class="ov-tag">Fixed cost</span><span class="ov-tag">Marginal cost</span><span class="ov-tag">Economies of scale</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec8')"><div class="ov-week">Week 7 · Ch.8</div><div class="ov-title">Perfect Competition</div><div class="ov-desc">Price takers, MR=MC, shutdown</div><div class="ov-tags"><span class="ov-tag">Price taker</span><span class="ov-tag">MR=MC</span><span class="ov-tag">Shutdown</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec9')"><div class="ov-week">Week 7 · Ch.9</div><div class="ov-title">Monopoly</div><div class="ov-desc">Price maker, DWL, barriers to entry</div><div class="ov-tags"><span class="ov-tag">Monopoly</span><span class="ov-tag">Deadweight loss</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec10')"><div class="ov-week">Week 7 · Ch.10–11</div><div class="ov-title">Oligopoly &amp; Monopolistic</div><div class="ov-desc">Game theory, concentration ratios</div><div class="ov-tags"><span class="ov-tag">Oligopoly</span><span class="ov-tag">Prisoner's Dilemma</span></div></div>
+    <div class="ov-card ec-card" onclick="showPanel('ec12')"><div class="ov-week">Week 4 · Ch.12–13</div><div class="ov-title">Externalities</div><div class="ov-desc">Market failures, public goods</div><div class="ov-tags"><span class="ov-tag">Externalities</span><span class="ov-tag">Public goods</span><span class="ov-tag">Free-rider</span></div></div>
+  </div>
+</section>
+
+<!-- EC1: WELCOME TO ECONOMICS -->
+<section id="ec1" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">1</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 1 · Week 2</div>
+      <h2>Welcome to Economics</h2>
+      <div class="ch-sub">Scarcity, choice, the PPF, and the scope of economics</div>
+    </div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Core Idea</div><p>Economics is the study of how humans make <strong>choices under scarcity</strong>. Because resources are limited but wants are unlimited, every choice involves a trade-off.</p></div>
+  <div class="section-title"><span class="st-icon">📚</span> Key Concepts</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Scarcity</div><div class="def-card-desc">Resources (time, money, land, labour) are limited relative to unlimited human wants. Scarcity forces choices.</div></div>
+    <div class="def-card"><div class="def-card-term">Microeconomics</div><div class="def-card-desc">Studies individual decision-makers: consumers, firms, and specific markets. Focuses on prices and quantities in particular markets.</div></div>
+    <div class="def-card"><div class="def-card-term">Macroeconomics</div><div class="def-card-desc">Studies the whole economy: GDP, inflation, unemployment, economic growth, and government policy.</div></div>
+    <div class="def-card"><div class="def-card-term">Factors of Production</div><div class="def-card-desc">Land, Labour, Capital, and Entrepreneurship — the four inputs used to produce goods and services.</div></div>
+    <div class="def-card"><div class="def-card-term">PPF (Production Possibilities Frontier)</div><div class="def-card-desc">A graph showing all maximum combinations of two goods an economy can produce when resources are fully and efficiently used. Points inside = inefficient; points outside = unattainable; on the curve = efficient.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec1"></div><div id="ecmatch-ec1"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec1"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec1"></div>
+</section>
+
+<!-- EC2: CHOICE & SCARCITY -->
+<section id="ec2" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">2</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 2 · Week 2</div>
+      <h2>Choice in a World of Scarcity</h2>
+      <div class="ch-sub">Opportunity cost, budget constraints &amp; comparative advantage (pp. 27–33)</div>
+    </div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Core Idea</div><p>Every choice has an <strong>opportunity cost</strong> — the value of the next best alternative foregone. There is no such thing as a free lunch.</p></div>
+  <div class="section-title"><span class="st-icon">📚</span> Key Concepts</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Opportunity Cost</div><div class="def-card-desc">The value of the best alternative you give up when making a choice. It is the true economic cost of any decision.</div></div>
+    <div class="def-card"><div class="def-card-term">Budget Constraint</div><div class="def-card-desc">A line showing all combinations of two goods a consumer can afford given their income and the prices of the goods. Income = P₁×Q₁ + P₂×Q₂.</div></div>
+    <div class="def-card"><div class="def-card-term">Comparative Advantage</div><div class="def-card-desc">The ability to produce a good at a lower opportunity cost than others. Basis for specialisation and mutually beneficial trade.</div></div>
+    <div class="def-card"><div class="def-card-term">Diminishing Marginal Utility</div><div class="def-card-desc">Each additional unit of a good consumed provides less extra satisfaction than the previous unit.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec2"></div><div id="ecmatch-ec2"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec2"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec2"></div>
+</section>
+
+<!-- EC3: DEMAND & SUPPLY -->
+<section id="ec3" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">3</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 3 · Week 3</div>
+      <h2>Demand and Supply</h2>
+      <div class="ch-sub">Laws of demand and supply, equilibrium, shifts in curves (pp. 47–80)</div>
+    </div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Key Rule</div><p>A change in a good's <strong>own price</strong> → movement <em>along</em> the curve. A change in anything <strong>else</strong> → shift of the entire curve.</p></div>
+  <div class="section-title"><span class="st-icon">📚</span> Key Concepts</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Law of Demand</div><div class="def-card-desc">Price ↑ → Quantity Demanded ↓ (inverse relationship), ceteris paribus.</div></div>
+    <div class="def-card"><div class="def-card-term">Law of Supply</div><div class="def-card-desc">Price ↑ → Quantity Supplied ↑ (positive relationship), ceteris paribus.</div></div>
+    <div class="def-card"><div class="def-card-term">Equilibrium</div><div class="def-card-desc">Where Qd = Qs. The market clears — no surplus or shortage. Price has no tendency to change.</div></div>
+    <div class="def-card"><div class="def-card-term">Surplus (Excess Supply)</div><div class="def-card-desc">Price is above equilibrium: Qs > Qd. Price falls back toward equilibrium.</div></div>
+    <div class="def-card"><div class="def-card-term">Shortage (Excess Demand)</div><div class="def-card-desc">Price is below equilibrium: Qd > Qs. Price rises back toward equilibrium.</div></div>
+    <div class="def-card"><div class="def-card-term">Substitutes &amp; Complements</div><div class="def-card-desc">Substitutes: replace each other (butter/margarine). Complements: used together (cars/petrol). Price of one affects demand for the other.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">⚠️</span> Demand Curve Shifters</div>
+  <table class="styled-table">
+    <thead><tr><th>Shifter</th><th>Demand shifts RIGHT when…</th><th>Demand shifts LEFT when…</th></tr></thead>
+    <tbody>
+      <tr><td>Income (normal good)</td><td>Income rises</td><td>Income falls</td></tr>
+      <tr><td>Price of substitutes</td><td>Substitute price rises</td><td>Substitute price falls</td></tr>
+      <tr><td>Price of complements</td><td>Complement price falls</td><td>Complement price rises</td></tr>
+      <tr><td>Tastes/preferences</td><td>Good becomes more popular</td><td>Good becomes less popular</td></tr>
+      <tr><td>Number of buyers</td><td>More buyers in market</td><td>Fewer buyers in market</td></tr>
+    </tbody>
+  </table>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec3"></div><div id="ecmatch-ec3"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec3"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec3"></div>
+</section>
+
+<!-- EC5: ELASTICITY -->
+<section id="ec5" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">5</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 5 · Week 5</div>
+      <h2>Elasticity</h2>
+      <div class="ch-sub">PED, PES, income elasticity — up to p.122</div>
+    </div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Formula</div><p><strong>PED = % change in Quantity Demanded ÷ % change in Price</strong>. Always negative (law of demand) but usually expressed as absolute value.</p></div>
+  <div class="section-title"><span class="st-icon">📐</span> Elasticity Values</div>
+  <table class="styled-table">
+    <thead><tr><th>Value</th><th>Type</th><th>Meaning</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>PED = 0</td><td>Perfectly inelastic</td><td>No response to price change</td><td>Life-saving medication</td></tr>
+      <tr><td>0 &lt; PED &lt; 1</td><td>Inelastic</td><td>Quantity not very responsive</td><td>Petrol, cigarettes</td></tr>
+      <tr><td>PED = 1</td><td>Unit elastic</td><td>% changes are equal</td><td>—</td></tr>
+      <tr><td>PED &gt; 1</td><td>Elastic</td><td>Quantity very responsive</td><td>Luxury holidays, designer goods</td></tr>
+      <tr><td>PED = ∞</td><td>Perfectly elastic</td><td>Any price rise → zero demand</td><td>Perfect competition firm</td></tr>
+    </tbody>
+  </table>
+  <div class="section-title"><span class="st-icon">📚</span> Key Concepts</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Factors making demand MORE elastic</div><div class="def-card-desc">Many substitutes · Luxury item · Large share of income · More time to adjust · Narrowly defined market</div></div>
+    <div class="def-card"><div class="def-card-term">Factors making demand MORE inelastic</div><div class="def-card-desc">Few substitutes · Necessity · Small share of income · Short time to adjust · Broadly defined market</div></div>
+    <div class="def-card"><div class="def-card-term">PED and Total Revenue</div><div class="def-card-desc">Elastic demand: price ↑ → TR falls. Inelastic demand: price ↑ → TR rises. Unit elastic: price change has no effect on TR.</div></div>
+    <div class="def-card"><div class="def-card-term">Income Elasticity of Demand</div><div class="def-card-desc">YED = % ΔQd ÷ % ΔIncome. Positive = normal good (demand rises with income). Negative = inferior good.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec5"></div><div id="ecmatch-ec5"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec5"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec5"></div>
+</section>
+
+<!-- EC7: PRODUCTION & COST -->
+<section id="ec7" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">7</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 7 · Week 6</div>
+      <h2>Production and Cost</h2>
+      <div class="ch-sub">Fixed &amp; variable costs, MC, ATC, economies of scale — up to p.173</div>
+    </div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Golden Rule</div><p>Profit is maximised where <strong>Marginal Revenue = Marginal Cost</strong>. This applies to every market structure.</p></div>
+  <div class="section-title"><span class="st-icon">📚</span> Cost Concepts</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Fixed Cost (FC)</div><div class="def-card-desc">Does not change with output. Paid even if nothing is produced. E.g. rent, insurance, machinery.</div></div>
+    <div class="def-card"><div class="def-card-term">Variable Cost (VC)</div><div class="def-card-desc">Changes with output. Zero when nothing is produced. E.g. raw materials, hourly wages.</div></div>
+    <div class="def-card"><div class="def-card-term">Marginal Cost (MC)</div><div class="def-card-desc">Extra cost of producing one more unit. MC = ΔTC ÷ ΔQ. MC curve is U-shaped due to diminishing returns.</div></div>
+    <div class="def-card"><div class="def-card-term">Average Total Cost (ATC)</div><div class="def-card-desc">ATC = TC ÷ Q = AFC + AVC. The MC curve crosses ATC at its minimum point.</div></div>
+    <div class="def-card"><div class="def-card-term">Economies of Scale</div><div class="def-card-desc">Long-run ATC falls as output increases. Larger scale → lower cost per unit (e.g. bulk buying, specialisation).</div></div>
+    <div class="def-card"><div class="def-card-term">Diseconomies of Scale</div><div class="def-card-desc">Long-run ATC rises as output increases beyond optimal size. Coordination problems, management inefficiency.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec7"></div><div id="ecmatch-ec7"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec7"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec7"></div>
+</section>
+
+<!-- EC8: PERFECT COMPETITION -->
+<section id="ec8" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">8</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 8 · Week 7</div>
+      <h2>Perfect Competition</h2>
+      <div class="ch-sub">Price takers, profit maximisation, shutdown point — up to p.199</div>
+    </div>
+  </div>
+  <div class="section-title"><span class="st-icon">📚</span> Characteristics</div>
+  <div class="two-col">
+    <div class="card-white"><h3>Features of Perfect Competition</h3><ul><li>Many buyers and sellers</li><li>Identical (homogeneous) products</li><li>Free entry and exit</li><li>Perfect information</li><li>Firms are price takers (P = MR)</li></ul></div>
+    <div class="card-white"><h3>Long-Run Equilibrium</h3><ul><li>P = MR = MC = ATC</li><li>Economic profit = 0</li><li>Firms earn normal profit only</li><li>No incentive to enter or exit</li><li>Productive and allocative efficiency</li></ul></div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">⚠️ Shutdown Rule</div><p>Short run: shut down when <strong>P &lt; AVC</strong> (can't cover variable costs — better to produce nothing). Long run: exit when <strong>P &lt; ATC</strong> (making economic losses).</p></div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec8"></div><div id="ecmatch-ec8"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec8"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec8"></div>
+</section>
+
+<!-- EC9: MONOPOLY -->
+<section id="ec9" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">9</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Chapter 9 · Week 7</div>
+      <h2>Monopoly</h2>
+      <div class="ch-sub">Price maker, barriers to entry, deadweight loss — up to p.223</div>
+    </div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Key Difference</div><p>In perfect competition: <strong>P = MC</strong>. In monopoly: <strong>P &gt; MC</strong> (allocative inefficiency). The monopolist restricts output to raise price above marginal cost.</p></div>
+  <div class="section-title"><span class="st-icon">📚</span> Key Concepts</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Monopoly</div><div class="def-card-desc">Single seller, no close substitutes, price maker. Faces downward-sloping demand curve for the whole market.</div></div>
+    <div class="def-card"><div class="def-card-term">Barriers to Entry</div><div class="def-card-desc">Patents, licences, control of key resources, high fixed costs (natural monopoly), network effects.</div></div>
+    <div class="def-card"><div class="def-card-term">MR &lt; Price</div><div class="def-card-desc">To sell one more unit, the monopolist must cut price on ALL units sold. So MR &lt; P for every unit.</div></div>
+    <div class="def-card"><div class="def-card-term">Deadweight Loss</div><div class="def-card-desc">The efficiency lost because the monopolist produces less than the socially optimal quantity and charges P &gt; MC.</div></div>
+    <div class="def-card"><div class="def-card-term">Natural Monopoly</div><div class="def-card-desc">One firm can serve the whole market at lower cost than multiple firms — due to very high fixed costs and economies of scale.</div></div>
+    <div class="def-card"><div class="def-card-term">Price Discrimination</div><div class="def-card-desc">Charging different prices to different consumers based on willingness to pay (e.g. student discounts, peak pricing).</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec9"></div><div id="ecmatch-ec9"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec9"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec9"></div>
+</section>
+
+<!-- EC10: OLIGOPOLY & MONOPOLISTIC COMPETITION -->
+<section id="ec10" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">10</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Ch.10–11 · Week 7</div>
+      <h2>Monopolistic Competition &amp; Oligopoly</h2>
+      <div class="ch-sub">Differentiation, game theory, concentration ratios — up to p.266</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="card-white"><h3>Monopolistic Competition</h3><ul><li>Many firms, differentiated products</li><li>Free entry and exit</li><li>Some pricing power (downward-sloping demand)</li><li>Long run: zero economic profit</li><li>Excess capacity — P &gt; MC (inefficient)</li></ul></div>
+    <div class="card-white"><h3>Oligopoly</h3><ul><li>Few large firms dominate</li><li>High barriers to entry</li><li>Strategic interdependence</li><li>Collusion possible (but often illegal)</li><li>Game theory applies</li></ul></div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">🎮 Prisoner's Dilemma</div><p>Each player has a <strong>dominant strategy</strong> to defect (confess/undercut). Acting in self-interest leads to a <strong>collectively worse outcome</strong> than if they had cooperated — the core logic of why cartels break down.</p></div>
+  <div class="section-title"><span class="st-icon">📊</span> Concentration Ratios</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Four-Firm Concentration Ratio</div><div class="def-card-desc">Combined market share of the 4 largest firms. Below 40% = competitive; 40–60% = oligopolistic; above 60% = highly concentrated.</div></div>
+    <div class="def-card"><div class="def-card-term">Collusion</div><div class="def-card-desc">Secret agreement to fix prices, limit output, or divide markets. Creates cartel behaviour. Usually illegal under competition law.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec10"></div><div id="ecmatch-ec10"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec10"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec10"></div>
+</section>
+
+<!-- EC12: EXTERNALITIES -->
+<section id="ec12" class="panel">
+  <div class="ch-header">
+    <div class="ch-number-block" style="background:var(--econ-green)">12</div>
+    <div class="ch-header-text">
+      <div class="ch-meta">Ch.12–13 · Week 4</div>
+      <h2>Externalities &amp; Public Goods</h2>
+      <div class="ch-sub">Market failures, Pigouvian taxes, subsidies &amp; public goods</div>
+    </div>
+  </div>
+  <div class="two-col">
+    <div class="card-white"><h3>Negative Externality (Ch.12)</h3><ul><li>Cost imposed on third parties</li><li>Market overproduces (private cost &lt; social cost)</li><li>Fix: Pigouvian tax, regulations, permits</li><li>Example: factory pollution</li></ul></div>
+    <div class="card-white"><h3>Positive Externality (Ch.13)</h3><ul><li>Benefit enjoyed by third parties</li><li>Market underproduces (private benefit &lt; social benefit)</li><li>Fix: subsidy, government provision</li><li>Example: vaccinations, education</li></ul></div>
+  </div>
+  <div class="callout callout-econ"><div class="callout-label">📌 Social Optimum</div><p>The efficient output is where <strong>Marginal Social Cost = Marginal Social Benefit</strong>. Free markets miss this when externalities exist.</p></div>
+  <div class="section-title"><span class="st-icon">📚</span> Public Goods</div>
+  <div class="def-grid">
+    <div class="def-card"><div class="def-card-term">Non-excludable</div><div class="def-card-desc">Cannot prevent anyone from using the good, even if they don't pay. E.g. national defence, street lighting.</div></div>
+    <div class="def-card"><div class="def-card-term">Non-rival</div><div class="def-card-desc">One person's use does not reduce availability for others. E.g. a TV broadcast — one more viewer doesn't affect others.</div></div>
+    <div class="def-card"><div class="def-card-term">Free-rider Problem</div><div class="def-card-desc">People benefit without paying. Private firms can't profit from public goods → market underprovides → government must supply.</div></div>
+  </div>
+  <div class="section-title"><span class="st-icon">🖊️</span> Exercises</div>
+  <div id="ecfill-ec12"></div><div id="ecmatch-ec12"></div>
+  <div id="ecfill-ec13"></div><div id="ecmatch-ec13"></div>
+  <div class="section-title"><span class="st-icon">🃏</span> Flashcards</div>
+  <div id="ecfc-ec12"></div><div id="ecfc-ec13"></div>
+  <div class="section-title"><span class="st-icon">✅</span> Chapter Quiz</div>
+  <div id="ecquiz-ec12"></div><div id="ecquiz-ec13"></div>
+</section>
+
+<!-- ECON MOCK EXAM -->
+<section id="ec-mockexam" class="panel">
+  <div id="econ-mock-intro">
+    <div class="mock-hero">
+      <div class="mock-hero-eyebrow">🎯 Economics Practice Exam</div>
+      <h2>Economics Mock Exam</h2>
+      <p>20 questions covering all topics from Shapiro, MacDonald &amp; Greenlaw — <em>Principles of Economics 3e</em>. Two different exams available — Exam B unlocks after finishing Exam A.</p>
+      <div class="mock-info-row">
+        <div class="mock-info-item"><div class="mii-val">20</div><div class="mii-label">Questions</div></div>
+        <div class="mock-info-item"><div class="mii-val">30</div><div class="mii-label">Minutes</div></div>
+        <div class="mock-info-item"><div class="mii-val">11</div><div class="mii-label">Chapters</div></div>
+        <div class="mock-info-item"><div class="mii-val">55%</div><div class="mii-label">Pass mark</div></div>
+      </div>
+      <button class="mock-start-btn" onclick="startEconExam()" id="econ-mock-start-btn">Start Exam A →</button>
+      <div class="mock-gen-note" id="econ-exam-count-badge">Exam A — 20 questions across all chapters</div>
+    </div>
+  </div>
+
+  <div class="mock-active" id="econ-mock-active">
+    <div class="exam-topbar">
+      <div>
+        <div style="font-size:11px;color:var(--ink-mute);font-family:Inconsolata,monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">Time remaining</div>
+        <div class="exam-timer" id="econ-exam-timer">30:00</div>
+      </div>
+      <div style="text-align:right;">
+        <div class="exam-progress-label" id="econ-exam-progress-label">1 / 20</div>
+        <div style="font-size:11px;color:var(--ink-mute);margin-top:2px;">questions</div>
+      </div>
+    </div>
+    <div class="exam-pbar-outer"><div class="exam-pbar-inner" id="econ-exam-pbar" style="width:5%"></div></div>
+    <div class="exam-dot-row" id="econ-exam-dot-row"></div>
+    <div class="exam-qcard">
+      <div class="exam-qmeta" id="econ-exam-qmeta">Question 1 of 20 · Ch.1</div>
+      <div class="exam-qtext" id="econ-exam-qtext">Loading…</div>
+      <div class="exam-opts" id="econ-exam-opts"></div>
+      <div class="exam-nav-row">
+        <button class="exam-nav-btn" id="econ-exam-prev-btn" onclick="econExamPrev()" disabled>← Previous</button>
+        <button class="exam-nav-btn primary" id="econ-exam-next-btn" onclick="econExamNext()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="mock-results" id="econ-mock-results">
+    <div class="results-hero">
+      <div style="font-size:13px;color:var(--ink-mute);font-family:Inconsolata,monospace;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;">Your Score</div>
+      <div class="results-score" id="econ-results-score">—%</div>
+      <div class="results-verdict" id="econ-results-verdict"></div>
+      <div class="results-stats-row">
+        <div class="rstat"><div class="rstat-val" id="econ-rstat-correct" style="color:var(--teal)">—</div><div class="rstat-label">Correct</div></div>
+        <div class="rstat"><div class="rstat-val" id="econ-rstat-wrong" style="color:var(--rose)">—</div><div class="rstat-label">Wrong</div></div>
+        <div class="rstat"><div class="rstat-val" id="econ-rstat-pct">—</div><div class="rstat-label">Score</div></div>
+        <div class="rstat"><div class="rstat-val" id="econ-rstat-time">—</div><div class="rstat-label">Time used</div></div>
+      </div>
+      <div class="results-actions">
+        <button class="res-btn primary" onclick="resetEconExam()">🔄 Try Other Exam</button>
+        <button class="res-btn" onclick="document.getElementById('econ-review-list').scrollIntoView({behavior:'smooth'})">📋 Review Answers</button>
+      </div>
+    </div>
+    <div class="section-title"><span class="st-icon">📋</span> Full Answer Review</div>
+    <div class="review-list" id="econ-review-list"></div>
+  </div>
+</section>
+
 </main>
 
 <!-- ══════════════════════════════════════════
@@ -690,6 +1066,10 @@
 <script src="BR1/exercises.js"></script>
 <script src="BR1/mockexam.js"></script>
 <script src="BR1/tutor.js"></script>
+<script src="ECON/data.js"></script>
+<script src="ECON/flashcards_econ.js"></script>
+<script src="ECON/exercises_econ.js"></script>
+<script src="ECON/mockexam_econ.js"></script>
 <script src="app.js"></script>
 
 </body>

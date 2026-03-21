@@ -1,11 +1,13 @@
 // ============================================================
-//  BR1 STUDY GUIDE — app.js
-//  Navigation + init. Uses var (not const/let) for globals
-//  so multiple script tags share scope without errors.
+//  Study Guide — app.js
+//  Navigation + initialisation for BR1 and ECON
 // ============================================================
 
-var PANELS   = ['overview','ch2','ch6','ch9','ch11','ch12','ch13','mockexam'];
-var NAV_BTNS = [];   // populated after DOM ready
+var PANELS = [
+  'overview','ch2','ch6','ch9','ch11','ch12','ch13','mockexam',
+  'ec-overview','ec1','ec2','ec3','ec5','ec7','ec8','ec9','ec10','ec12','ec-mockexam'
+];
+var NAV_BTNS = [];
 
 function showPanel(id) {
   for (var i = 0; i < PANELS.length; i++) {
@@ -21,11 +23,21 @@ function showPanel(id) {
 window.addEventListener('DOMContentLoaded', function () {
   NAV_BTNS = document.querySelectorAll('.nav-btn');
 
-  var chapters = ['ch2','ch6','ch9','ch11','ch12','ch13'];
-  for (var i = 0; i < chapters.length; i++) {
-    renderFlashcards(chapters[i]);
-    renderChapterQuiz(chapters[i]);
-    renderFillExercise(chapters[i]);
-    renderMatchExercise(chapters[i]);
+  // BR1 chapters
+  var br1 = ['ch2','ch6','ch9','ch11','ch12','ch13'];
+  for (var i = 0; i < br1.length; i++) {
+    renderFlashcards(br1[i]);
+    renderChapterQuiz(br1[i]);
+    renderFillExercise(br1[i]);
+    renderMatchExercise(br1[i]);
+  }
+
+  // ECON chapters
+  var econ = ['ec1','ec2','ec3','ec5','ec7','ec8','ec9','ec10','ec12','ec13'];
+  for (var j = 0; j < econ.length; j++) {
+    renderEconFlashcards(econ[j]);
+    renderEconQuiz(econ[j]);
+    renderEconFill(econ[j]);
+    renderEconMatch(econ[j]);
   }
 });
