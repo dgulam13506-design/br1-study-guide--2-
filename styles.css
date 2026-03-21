@@ -1398,47 +1398,108 @@ body {
 /* ── ECON chapter header number blocks ── */
 .econ-main .ch-number-block { background: var(--econ-green) !important; }
 
-/* ── Formula Sheet ── */
+/* ═══════════════════════════════
+   FORMULA SHEET
+═══════════════════════════════ */
 .formula-grid {
   display: grid;
-  gap: 12px;
-  margin-bottom: 20px;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin-bottom: 28px;
 }
+.formula-grid.fg-2 {
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+}
+@media (max-width: 600px) {
+  .formula-grid.fg-2 { grid-template-columns: 1fr; }
+}
+
 .formula-card {
   background: white;
   border: 1.5px solid var(--warm-200);
-  border-left: 4px solid var(--econ-green);
   border-radius: var(--radius);
-  padding: 16px 20px;
+  overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.18s;
+  transition: box-shadow 0.18s, transform 0.18s;
 }
 .formula-card:hover {
   box-shadow: var(--shadow);
+  transform: translateY(-2px);
 }
+
+/* coloured top stripe */
+.formula-card::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--econ-green), #4ec98a);
+}
+
+.formula-card-inner {
+  padding: 18px 20px 16px;
+}
+
 .formula-name {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.09em;
   color: var(--econ-green);
   font-family: 'Inconsolata', monospace;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
+
+/* The formula itself */
 .formula-math {
   font-family: 'Inconsolata', monospace;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--ink);
   background: var(--econ-lt);
-  border-radius: 6px;
-  padding: 8px 14px;
-  margin-bottom: 8px;
-  line-height: 1.6;
+  border: 1px solid rgba(30,110,69,0.15);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  line-height: 1.65;
+  white-space: pre-line;
   word-break: break-word;
 }
+
+/* Symbol legend */
+.formula-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.fl-term {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  background: var(--cream);
+  border: 1px solid var(--warm-200);
+  border-radius: 20px;
+  padding: 3px 10px 3px 8px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+.fl-sym {
+  font-family: 'Inconsolata', monospace;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--econ-green);
+  white-space: nowrap;
+}
+.fl-def {
+  color: var(--ink-soft);
+}
+
+/* Plain-language explanation */
 .formula-explain {
   font-size: 13px;
   color: var(--ink-mute);
-  line-height: 1.6;
+  line-height: 1.65;
+  border-top: 1px solid var(--warm-100);
+  padding-top: 10px;
+  margin-top: 2px;
 }
