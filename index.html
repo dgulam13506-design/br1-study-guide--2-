@@ -23,6 +23,11 @@
     <span class="subject-name">Economics</span>
     <span class="subject-code">ECON</span>
   </button>
+  <button class="subject-btn" id="subj-it" onclick="switchSubject('it')">
+    <span class="subject-icon">💻</span>
+    <span class="subject-name">IT Skills</span>
+    <span class="subject-code">IT</span>
+  </button>
 </div>
 
 <!-- ══ BR1 HEADER ══ -->
@@ -59,6 +64,17 @@
   <button class="nav-btn" onclick="showPanel('ch13')"><span class="nav-week">W5</span>Sampling</button>
   <button class="nav-btn exam-btn" onclick="showPanel('mockexam')">🎯 Mock Exam</button>
 </nav>
+
+<!-- ══ IT HEADER ══ -->
+<header class="site-header it-header" id="header-it" style="display:none">
+  <div class="header-eyebrow" style="color:#378ADD">── IT · Excel · Access · Power BI</div>
+  <h1><em>IT Skills</em><br>Study Guide</h1>
+  <div class="header-pills">
+    <span class="header-pill">💻 Excel · Access · Power BI</span>
+    <span class="header-pill">📊 AMSIB IT Module</span>
+    <span class="header-pill">🎯 4 Chapters</span>
+  </div>
+</header>
 
 <!-- ══ ECON SUB-NAV ══ -->
 <nav class="site-nav econ-subnav" id="subnav-econ" style="display:none">
@@ -1104,6 +1120,478 @@
 </section>
 
 </main><!-- end ECON main -->
+
+<!-- ══════════════════════════════════════════
+     IT PANELS
+══════════════════════════════════════════ -->
+<main class="main it-main" id="it-main" style="display:none">
+
+<style>
+#it-main {
+  --font-sans: 'Instrument Sans', sans-serif;
+  --font-mono: 'Inconsolata', monospace;
+  --color-text-primary: var(--ink);
+  --color-text-secondary: var(--ink-mute);
+  --color-background-primary: var(--cream);
+  --color-background-secondary: var(--warm-100);
+  --color-background-tertiary: var(--warm-200);
+  --color-border-primary: var(--warm-400);
+  --color-border-secondary: var(--warm-200);
+  --color-border-tertiary: var(--warm-100);
+  --border-radius-lg: var(--radius-lg);
+  --border-radius-md: var(--radius);
+}
+#it-main .nav{display:flex;gap:6px;flex-wrap:wrap;padding:1.25rem 0 1rem}
+#it-main .nav button{padding:6px 14px;border-radius:20px;border:0.5px solid var(--color-border-secondary);background:var(--color-background-secondary);color:var(--color-text-secondary);font-size:13px;cursor:pointer;transition:all 0.15s}
+#it-main .nav button.active{background:var(--color-background-tertiary);color:var(--color-text-primary);border-color:var(--color-border-primary);font-weight:500}
+#it-main .page{display:none}
+#it-main .page.active{display:block}
+#it-main h2{font-size:18px;font-weight:500;margin-bottom:0.75rem}
+#it-main h3{font-size:15px;font-weight:500;margin:1.25rem 0 0.5rem;color:var(--color-text-primary)}
+#it-main h4{font-size:14px;font-weight:500;margin:1rem 0 0.35rem}
+#it-main p{font-size:14px;line-height:1.7;color:var(--color-text-secondary);margin-bottom:0.6rem}
+#it-main .card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:1rem}
+#it-main .formula{background:var(--color-background-secondary);border-left:3px solid #378ADD;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:0.55rem 1rem;font-family:var(--font-mono);font-size:13px;color:var(--color-text-primary);margin:0.4rem 0 0.75rem;white-space:pre-wrap}
+#it-main .badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:12px;font-weight:500}
+#it-main .b-blue{background:#E6F1FB;color:#0C447C}
+#it-main .b-green{background:#EAF3DE;color:#27500A}
+#it-main .b-amber{background:#FAEEDA;color:#633806}
+#it-main .b-purple{background:#EEEDFE;color:#3C3489}
+#it-main .b-teal{background:#E1F5EE;color:#085041}
+#it-main .b-red{background:#FCEBEB;color:#791F1F}
+#it-main .tip{background:#EAF3DE;border-radius:var(--border-radius-md);padding:0.65rem 1rem;margin:0.65rem 0;font-size:13px;color:#27500A}
+#it-main .warn{background:#FAEEDA;border-radius:var(--border-radius-md);padding:0.65rem 1rem;margin:0.65rem 0;font-size:13px;color:#633806}
+#it-main .info{background:#E6F1FB;border-radius:var(--border-radius-md);padding:0.65rem 1rem;margin:0.65rem 0;font-size:13px;color:#0C447C}
+#it-main table{width:100%;font-size:13px;border-collapse:collapse;margin:0.5rem 0}
+#it-main th{text-align:left;padding:6px 8px;font-weight:500;background:var(--color-background-secondary);color:var(--color-text-secondary)}
+#it-main td{padding:6px 8px;border-top:0.5px solid var(--color-border-tertiary);color:var(--color-text-primary);vertical-align:top}
+#it-main .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+#it-main .road{display:flex;gap:0;margin:0.75rem 0 1rem;flex-wrap:wrap}
+#it-main .road-step{background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);padding:8px 14px;font-size:13px;position:relative;flex:1;text-align:center;min-width:80px}
+#it-main .road-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:50%;transform:translateY(-50%);color:var(--color-text-secondary);font-size:12px;z-index:1}
+#it-main .road-step.done{background:#EAF3DE;border-color:#639922;color:#27500A}
+#it-main .road-step.current{background:#E6F1FB;border-color:#378ADD;color:#0C447C;font-weight:500}
+#it-main .q-q{font-size:14px;font-weight:500;margin-bottom:10px}
+#it-main .q-opts button{display:block;width:100%;text-align:left;padding:8px 12px;margin-bottom:5px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:13px;cursor:pointer}
+#it-main .q-opts button:hover{background:var(--color-background-secondary)}
+#it-main .q-opts button.correct{background:#EAF3DE;border-color:#639922;color:#27500A}
+#it-main .q-opts button.wrong{background:#FCEBEB;border-color:#A32D2D;color:#791F1F}
+#it-main .fb{font-size:13px;padding:8px 12px;border-radius:var(--border-radius-md);margin-top:6px;display:none}
+#it-main .fb.show{display:block}
+#it-main .fb.good{background:#EAF3DE;color:#27500A}
+#it-main .fb.bad{background:#FCEBEB;color:#791F1F}
+#it-main .chapters-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:0.75rem 0}
+#it-main .ch-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:0.85rem 1rem;cursor:pointer;transition:all 0.15s}
+#it-main .ch-card:hover{background:var(--color-background-secondary)}
+#it-main .ch-num{font-size:11px;color:var(--color-text-secondary);margin-bottom:4px}
+#it-main .ch-title{font-size:13px;font-weight:500}
+#it-main .progress-bar{height:6px;background:var(--color-background-secondary);border-radius:3px;margin-bottom:1rem;overflow:hidden}
+#it-main .progress-fill{height:100%;background:#378ADD;border-radius:3px;transition:width 0.3s}
+</style>
+
+<h2 class="sr-only">IT module study guide covering Excel basics, advanced Excel, MS Access, and Power BI based on the AMSIB syllabus</h2>
+
+<div class="nav">
+  <button class="active" onclick="itTab('overview')">Overview</button>
+  <button onclick="itTab('excel1')">Excel basics</button>
+  <button onclick="itTab('excel2')">Advanced Excel</button>
+  <button onclick="itTab('access')">MS Access</button>
+  <button onclick="itTab('powerbi')">Power BI</button>
+  <button onclick="itTab('quiz')">Quiz</button>
+</div>
+
+<div class="page active" id="p-overview">
+  <h2>Your IT module at a glance</h2>
+  <p>This module covers 4 tools. Here's the full roadmap from basics to exam-ready:</p>
+  <div class="road">
+    <div class="road-step done">Excel basics<br><span style="font-size:11px;color:inherit">Ch. 1</span></div>
+    <div class="road-step current">Advanced Excel<br><span style="font-size:11px;color:inherit">Ch. 2</span></div>
+    <div class="road-step">MS Access<br><span style="font-size:11px;color:inherit">Ch. 3</span></div>
+    <div class="road-step">Power BI<br><span style="font-size:11px;color:inherit">Ch. 4</span></div>
+  </div>
+
+  <div class="chapters-grid">
+    <div class="ch-card" onclick="itTab('excel1')">
+      <div class="ch-num">Chapter 1</div>
+      <div class="ch-title">Excel basics</div>
+      <p style="font-size:12px;margin-top:4px;margin-bottom:0">Formulas, dollar signs, charts, functions like SUM, AVERAGE, IF</p>
+    </div>
+    <div class="ch-card" onclick="itTab('excel2')">
+      <div class="ch-num">Chapter 2</div>
+      <div class="ch-title">Advanced Excel</div>
+      <p style="font-size:12px;margin-top:4px;margin-bottom:0">Data validation, pivot tables, VLOOKUP, HLOOKUP, XLOOKUP, conditional formatting</p>
+    </div>
+    <div class="ch-card" onclick="itTab('access')">
+      <div class="ch-num">Chapter 3</div>
+      <div class="ch-title">MS Access</div>
+      <p style="font-size:12px;margin-top:4px;margin-bottom:0">Databases, tables, primary keys, queries, forms, reports, relationships</p>
+    </div>
+    <div class="ch-card" onclick="itTab('powerbi')">
+      <div class="ch-num">Chapter 4</div>
+      <div class="ch-title">Power BI</div>
+      <p style="font-size:12px;margin-top:4px;margin-bottom:0">Loading data, building visuals, cleaning data, slicers, drilling</p>
+    </div>
+  </div>
+
+  <div class="info">📌 Your exam uses Windows-based computers at AMSIB. If you normally use Mac, make sure you practise on a Windows machine beforehand.</div>
+
+  <h3>Key exam rules (applies to all mock assignments)</h3>
+  <div class="card">
+    <table>
+      <tr><th>Rule</th><th>Detail</th></tr>
+      <tr><td><span class="badge b-red">No numbers in formulas</span></td><td>All values must come from cell references, never typed directly into a formula (e.g. <code>=B3*0.21</code> is wrong; use a cell reference for 0.21)</td></tr>
+      <tr><td><span class="badge b-amber">Minimum dollar signs</span></td><td>Only lock ($) what actually needs to stay fixed when copied. Over-using $ costs points. Under-using $ also costs points.</td></tr>
+      <tr><td><span class="badge b-blue">Use functions</span></td><td>Where a function exists (SUM, AVERAGE, COUNTIF...) use it — don't manually add cells together</td></tr>
+      <tr><td><span class="badge b-purple">No internet / AI</span></td><td>You may use the syllabus and Excel Help during the exam, but not the internet or AI</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="page" id="p-excel1">
+  <h2>Chapter 1: Excel basics</h2>
+
+  <div class="card">
+    <h3>The golden rule: never type numbers in formulas</h3>
+    <p>Every number (VAT rate, bonus %, monthly payment) must live in its own cell. Your formula references that cell. That way, changing one cell updates everything automatically.</p>
+    <div class="two-col">
+      <div>
+        <p style="font-size:12px;color:#A32D2D;font-weight:500">Wrong:</p>
+        <div class="formula">=D1*0.21</div>
+      </div>
+      <div>
+        <p style="font-size:12px;color:#27500A;font-weight:500">Correct:</p>
+        <div class="formula">=D1*D2</div>
+      </div>
+    </div>
+    <p>Where D2 contains 0.21. If the VAT changes, you only update D2 — all formulas recalculate automatically.</p>
+  </div>
+
+  <div class="card">
+    <h3>Cell references: relative vs absolute</h3>
+    <p>When you copy a formula, Excel shifts all references automatically. This is called a <strong>relative reference</strong>.</p>
+    <div class="formula">=A2*B2  →  copied to row 3 becomes  =A3*B3</div>
+    <p>If you need a reference to stay fixed, add a <code>$</code> sign. Press <strong>F4</strong> to cycle through all four options:</p>
+    <table>
+      <tr><th>Syntax</th><th>What's locked</th><th>When to use it</th></tr>
+      <tr><td><code>A1</code></td><td>Nothing</td><td>Standard row-by-row calculations</td></tr>
+      <tr><td><code>$A1</code></td><td>Column only</td><td>Column stays fixed, rows vary</td></tr>
+      <tr><td><code>A$1</code></td><td>Row only</td><td>Row stays fixed, columns vary</td></tr>
+      <tr><td><code>$A$1</code></td><td>Both</td><td>One fixed value used everywhere (e.g. VAT rate)</td></tr>
+    </table>
+    <div class="warn">⚠️ Only use $ when the formula will be copied AND the reference must not shift. Adding unnecessary $ loses points on the exam.</div>
+  </div>
+
+  <div class="card">
+    <h3>Referencing another sheet</h3>
+    <div class="formula">='SheetName'!CellAddress</div>
+    <p>Example: pull cell B1 from the Input sheet:</p>
+    <div class="formula">='Input'!B1</div>
+    <p>Or combine with locking:</p>
+    <div class="formula">='Rates'!$C$9</div>
+    <div class="tip">💡 Easiest method: start your formula, then click the other sheet tab and click the cell. Excel writes the reference for you.</div>
+  </div>
+
+  <div class="card">
+    <h3>Key functions — Chapter 1</h3>
+    <table>
+      <tr><th>Function</th><th>What it returns</th></tr>
+      <tr><td><code>=SUM(A1:A10)</code></td><td>Total of a range</td></tr>
+      <tr><td><code>=AVERAGE(A1:A10)</code></td><td>Mean of a range</td></tr>
+      <tr><td><code>=COUNT(A1:A10)</code></td><td>Number of non-blank cells</td></tr>
+      <tr><td><code>=MAX(A1:A10)</code></td><td>Highest value</td></tr>
+      <tr><td><code>=MIN(A1:A10)</code></td><td>Lowest value</td></tr>
+      <tr><td><code>=COUNTIF(A1:A10;">=5.5")</code></td><td>Count cells meeting a condition</td></tr>
+      <tr><td><code>=SUMIF(A1:A10;">=5.5")</code></td><td>Sum cells meeting a condition</td></tr>
+      <tr><td><code>=TODAY()</code></td><td>Today's date (updates automatically)</td></tr>
+      <tr><td><code>=WEEKDAY(A1;2)</code></td><td>Day of week (2 = Mon=1 through Sun=7)</td></tr>
+      <tr><td><code>=ABS(A1)</code></td><td>Absolute value (removes minus sign)</td></tr>
+      <tr><td><code>=INT(A1)</code></td><td>Round down to whole number</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Charts</h3>
+    <p>Select your data range → Insert → Line Chart or Bar Chart. Key steps after inserting:</p>
+    <p>Add a title via Chart Design → Add Chart Element → Chart Title. Label axes via Chart Design → Add Chart Element → Axis Titles. The exam may ask you to match a specific chart style exactly.</p>
+  </div>
+</div>
+
+<div class="page" id="p-excel2">
+  <h2>Chapter 2: Advanced Excel</h2>
+
+  <div class="card">
+    <h3>Data validation — controlling what gets entered</h3>
+    <p>Two main types used in your exam:</p>
+    <h4><span class="badge b-blue">Dropdown list</span></h4>
+    <p>Data → Data Validation → List → set source to a cell range (e.g. <code>=CustomerData!$A$2:$A$26</code>). You can also add an input message and an error alert.</p>
+    <h4><span class="badge b-blue">Restricted number input</span></h4>
+    <p>Data → Data Validation → Whole Number → Between → set min/max. Add an input message ("Enter a value between 1 and 10") and error alert.</p>
+  </div>
+
+  <div class="card">
+    <h3>Conditional formatting</h3>
+    <p>Home → Conditional Formatting → Highlight Cell Rules. You can colour cells based on value, text match, date, etc. Useful for making patterns visible at a glance — e.g. red for overdue invoices, green for paid.</p>
+    <div class="tip">For the exam: make sure your formatting rules reference cell addresses (not hardcoded numbers) so they update if the threshold changes.</div>
+  </div>
+
+  <div class="card">
+    <h3>IF function</h3>
+    <div class="formula">=IF(condition; value_if_true; value_if_false)</div>
+    <p>Example — pass/fail based on a grade:</p>
+    <div class="formula">=IF(E2>=C$12; B$13; B$14)</div>
+    <p>You can nest IF inside IF for multiple conditions, or combine with AND/OR:</p>
+    <div class="formula">=IF(AND(B3>=4; B3&lt;=16); "school age"; "not school age")</div>
+    <div class="formula">=IF(OR(C3="blue"; C3="white"); $H$3; $H$4)</div>
+  </div>
+
+  <div class="card">
+    <h3>VLOOKUP</h3>
+    <div class="formula">=VLOOKUP(lookup_value; table_array; col_index; range_lookup)</div>
+    <table>
+      <tr><th>Argument</th><th>Meaning</th></tr>
+      <tr><td>lookup_value</td><td>What you're searching for</td></tr>
+      <tr><td>table_array</td><td>The table to search in (lock with $ when copying)</td></tr>
+      <tr><td>col_index</td><td>Which column to return (1 = first column of table)</td></tr>
+      <tr><td>range_lookup</td><td>FALSE = exact match | TRUE = approximate (for ranges)</td></tr>
+    </table>
+    <div class="tip">Use FALSE for names, codes, text. Use TRUE only for numeric ranges where the value falls between two boundaries (e.g. date ranges, age bands, star table).</div>
+  </div>
+
+  <div class="card">
+    <h3>HLOOKUP</h3>
+    <div class="formula">=HLOOKUP(lookup_value; table_array; row_index; range_lookup)</div>
+    <p>Same as VLOOKUP but searches across a row instead of down a column. Use it when your table is horizontal (headers in a row, data below).</p>
+    <p>Example — look up account type rate from a horizontal rates table:</p>
+    <div class="formula">=HLOOKUP(E3; Rates!B11:C12; 2; 0)</div>
+  </div>
+
+  <div class="card">
+    <h3>Nested VLOOKUP (the trickiest one)</h3>
+    <p>Use one VLOOKUP inside another when you need a two-step lookup — first get an intermediate value, then use it to find the final answer.</p>
+    <div class="formula">=VLOOKUP(VLOOKUP(B3; CustomerData!A:E; 3; FALSE); Rates!B2:E7; 4; TRUE)</div>
+    <p>Inner lookup gets the opening date. Outer lookup uses that date to find the star colour.</p>
+  </div>
+
+  <div class="card">
+    <h3>XLOOKUP (newer, more flexible)</h3>
+    <div class="formula">=XLOOKUP(lookup_value; lookup_array; return_array; "not found")</div>
+    <p>Advantages over VLOOKUP: can search left/right, returns multiple columns, defaults to exact match, has a built-in "not found" message, doesn't break if you insert columns.</p>
+    <div class="formula">=XLOOKUP(F1; C3:C7; A3:B7; "no department in this city")</div>
+    <div class="warn">⚠️ XLOOKUP only works in newer Excel versions. Stick to VLOOKUP/HLOOKUP unless explicitly asked for XLOOKUP.</div>
+  </div>
+
+  <div class="card">
+    <h3>Pivot tables</h3>
+    <p>Select your data range → Insert → PivotTable → New Worksheet. Then drag fields into:</p>
+    <table>
+      <tr><th>Area</th><th>What to put there</th></tr>
+      <tr><td>Rows</td><td>What you want as row labels (e.g. Category, Name)</td></tr>
+      <tr><td>Columns</td><td>What you want as column headers (e.g. Quarter, Month)</td></tr>
+      <tr><td>Values</td><td>What to calculate (e.g. Sum of Amount, Average of Balance, Count)</td></tr>
+      <tr><td>Filters</td><td>What to filter the whole table by (e.g. Year, Region)</td></tr>
+    </table>
+    <div class="tip">Right-click the Values field → Value Field Settings to change Sum to Average, Count, % of Column Total, etc.</div>
+  </div>
+</div>
+
+<div class="page" id="p-access">
+  <h2>Chapter 3: MS Access</h2>
+
+  <div class="card">
+    <h3>What is a database?</h3>
+    <p>An organised collection of data structured into tables. Unlike Excel (one sheet of data), a database links multiple related tables together.</p>
+    <table>
+      <tr><th>Term</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td>Field</td><td>A column — one piece of info</td><td>CustomerName, Balance</td></tr>
+      <tr><td>Record</td><td>A row — one complete entry</td><td>One customer's full details</td></tr>
+      <tr><td>Table</td><td>All records for one entity</td><td>Customers, Orders, Products</td></tr>
+      <tr><td>Primary key</td><td>A unique identifier per record</td><td>StudentNumber, CustomerID</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Primary key</h3>
+    <p>Every table needs a primary key — a field (or combination of fields) that uniquely identifies each record. No two records can have the same primary key value.</p>
+    <div class="tip">Example: your student number at AMSIB is a primary key. No other student has the same number, so it uniquely identifies you in the database.</div>
+  </div>
+
+  <div class="card">
+    <h3>Relationships between tables</h3>
+    <p>Tables are linked via a shared field. The primary key of one table appears as a foreign key in another. This avoids storing the same data in multiple places.</p>
+    <p>Two integrity rules to know:</p>
+    <p><span class="badge b-blue">Rule 1</span> A primary key field cannot be empty (null).</p>
+    <p><span class="badge b-blue">Rule 2 — Referential integrity</span> A foreign key must either match an existing primary key in the related table, or be empty. You cannot add a record that refers to a non-existent parent record.</p>
+  </div>
+
+  <div class="card">
+    <h3>Queries — retrieving data</h3>
+    <p>A query retrieves specific records based on criteria you set. Key query types:</p>
+    <table>
+      <tr><th>Type</th><th>What it does</th><th>Example criteria</th></tr>
+      <tr><td>Projection</td><td>Show only certain fields</td><td>Select only Name and City</td></tr>
+      <tr><td>Selection</td><td>Filter by condition</td><td>Balance &gt; 1000</td></tr>
+      <tr><td>Wildcard</td><td>Partial text match</td><td>Like "A*" (starts with A)</td></tr>
+      <tr><td>Date criteria</td><td>Filter by date</td><td>Between #1/1/2020# And #12/31/2020#</td></tr>
+      <tr><td>AND</td><td>Both conditions must be true</td><td>City = "Amsterdam" AND Balance &gt; 500</td></tr>
+      <tr><td>OR</td><td>Either condition can be true</td><td>City = "Amsterdam" OR City = "Rotterdam"</td></tr>
+      <tr><td>Parameter</td><td>Asks for input when run</td><td>[Enter customer name:]</td></tr>
+    </table>
+    <div class="tip">In the criteria grid: AND conditions go on the same row. OR conditions go on separate rows.</div>
+  </div>
+
+  <div class="card">
+    <h3>Forms</h3>
+    <p>A form is a user-friendly interface for entering data into a table. Instead of working directly in the raw table, a form displays one record at a time in a clean layout. Create via: Create → Form.</p>
+  </div>
+
+  <div class="card">
+    <h3>Reports</h3>
+    <p>A report formats data for printing or presenting. Create via: Create → Report Wizard. You can group records, add totals/averages, and choose the layout. Reports are read-only — you cannot edit data in a report.</p>
+  </div>
+
+  <div class="card">
+    <h3>SQL basics</h3>
+    <p>Access queries work in SQL behind the scenes. You can switch to SQL view to see or write the query directly.</p>
+    <div class="formula">SELECT CustomerName, Balance FROM Customers WHERE Balance &gt; 1000 ORDER BY Balance DESC;</div>
+    <p>Key words: SELECT (what fields), FROM (which table), WHERE (condition), ORDER BY (sort), GROUP BY (for aggregation).</p>
+  </div>
+</div>
+
+<div class="page" id="p-powerbi">
+  <h2>Chapter 4: Power BI</h2>
+
+  <div class="card">
+    <h3>What is Power BI?</h3>
+    <p>Power BI is Microsoft's data visualisation tool. You connect it to data sources (Excel, CSV, databases), clean/transform the data, and then build interactive visual dashboards.</p>
+    <p>Three main areas of the interface:</p>
+    <table>
+      <tr><th>Area</th><th>What it does</th></tr>
+      <tr><td>Report view</td><td>Where you build visuals (charts, tables, maps, cards)</td></tr>
+      <tr><td>Data view</td><td>See your raw data and check what was loaded</td></tr>
+      <tr><td>Model view</td><td>See and manage relationships between tables</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Loading and cleaning data (Power Query)</h3>
+    <p>When you load data, Power BI opens Power Query editor for cleaning. Key transformations:</p>
+    <table>
+      <tr><th>Action</th><th>When to use it</th></tr>
+      <tr><td>Remove errors</td><td>Data has invalid values in some rows</td></tr>
+      <tr><td>Change data type</td><td>A number column loaded as text</td></tr>
+      <tr><td>Split column</td><td>One column contains first and last name together</td></tr>
+      <tr><td>Remove duplicates</td><td>Same row appears more than once</td></tr>
+      <tr><td>Filter rows</td><td>Exclude records you don't need</td></tr>
+      <tr><td>Rename column</td><td>Make column names clearer</td></tr>
+    </table>
+    <div class="tip">Always click "Close and Apply" after making changes in Power Query to push the cleaned data into your report.</div>
+  </div>
+
+  <div class="card">
+    <h3>Building visuals</h3>
+    <p>Click a visual type in the Visualizations pane (bar chart, line chart, pie, card, table, map), then drag fields from the Fields pane into the visual's field wells (Axis, Values, Legend, etc.).</p>
+    <p>Common visuals in the exercises:</p>
+    <table>
+      <tr><th>Visual</th><th>Best for</th></tr>
+      <tr><td>Bar / Column chart</td><td>Comparing categories</td></tr>
+      <tr><td>Line chart</td><td>Trends over time</td></tr>
+      <tr><td>Card</td><td>Single key number (total revenue, count)</td></tr>
+      <tr><td>Table / Matrix</td><td>Detailed breakdown with rows and columns</td></tr>
+      <tr><td>Pie / Donut</td><td>Proportions of a whole</td></tr>
+      <tr><td>Map</td><td>Geographic data</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Slicers</h3>
+    <p>A slicer is a filter button on the canvas. Add one via the Slicer visual type, then drag a field (e.g. Year, Category, Region) into it. Clicking values in the slicer filters all other visuals on the page simultaneously.</p>
+    <div class="tip">Slicers are one of the most commonly tested features. Know how to add one and link it to other visuals.</div>
+  </div>
+
+  <div class="card">
+    <h3>Drilling</h3>
+    <p>If your visual has a hierarchy (e.g. Year → Quarter → Month), you can drill down by clicking the drill arrow or double-clicking a data point. This lets users explore from a high-level summary down to details without a separate page.</p>
+  </div>
+
+  <div class="card">
+    <h3>The Jacobs Plants exercises (from your syllabus)</h3>
+    <p>Your exercises use a fictional garden centre dataset. The progression is:</p>
+    <p>1. Load the data → 2. Build basic visuals → 3. Clean data with errors → 4. Transform data and rebuild visuals → 5. Add drilling → 6. Add slicers.</p>
+    <div class="info">📌 You'll need to download the exercise files from Brightspace (Jacobs Plants, Financials, Customers, Interior Shop, Contoso) to practise these.</div>
+  </div>
+</div>
+
+<div class="page" id="p-quiz">
+  <h2>Test yourself</h2>
+  <p style="margin-bottom:1rem">Questions drawn from all four chapters of your syllabus.</p>
+  <div id="it-quiz-wrap"></div>
+</div>
+
+<script>
+function itTab(id){
+  document.querySelectorAll('#it-main .page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#it-main .nav button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('p-'+id).classList.add('active');
+  const tabs=['overview','excel1','excel2','access','powerbi','quiz'];
+  document.querySelectorAll('#it-main .nav button')[tabs.indexOf(id)].classList.add('active');
+  if(id==='quiz') initITQuiz();
+}
+
+const itAllQ=[
+  {q:"You write =B2*C7 and copy it down to row 3. What does C7 become?",opts:["C7 (unchanged)","C8","$C$7","It causes an error"],c:1,exp:"Without $, both row and column shift when you copy. C7 becomes C8 in row 3. You need $C$7 to lock it."},
+  {q:"What does FALSE mean as the last argument in VLOOKUP?",opts:["Approximate match","Exact match","Case-sensitive match","Sort descending"],c:1,exp:"FALSE = exact match. TRUE = approximate (for numeric ranges). For names and codes always use FALSE."},
+  {q:"When would you use HLOOKUP instead of VLOOKUP?",opts:["When the table is very large","When you want an exact match","When your lookup table is horizontal (headers in a row)","When searching multiple sheets"],c:2,exp:"HLOOKUP searches across a row (horizontal). VLOOKUP searches down a column (vertical). Use HLOOKUP when your table has headers in a row with data in rows below."},
+  {q:"In MS Access, what is a primary key?",opts:["The first field in every table","A field that uniquely identifies each record","The table's password","A required field"],c:1,exp:"A primary key uniquely identifies each record. No two records can share the same primary key. Example: your student number at AMSIB."},
+  {q:"In a query, you put two conditions on the SAME row in the criteria grid. What does that mean?",opts:["OR — either condition must be true","AND — both conditions must be true","The conditions are unrelated","It filters by two tables"],c:1,exp:"In Access queries, conditions on the same row = AND (both must be true). Conditions on separate rows = OR (either can be true)."},
+  {q:"In Power BI, what does a slicer do?",opts:["Removes duplicate rows from data","Filters all visuals on the page when you click a value","Splits one column into multiple columns","Creates a hierarchy for drilling"],c:1,exp:"A slicer is an interactive filter on the canvas. Clicking a value (e.g. 'Q1' or 'Netherlands') filters all other visuals on that page simultaneously."},
+  {q:"You need to lock only the row of cell B4 (not the column). What do you write?",opts:["$B$4","$B4","B$4","B4"],c:2,exp:"B$4 locks row 4 (the number after $). The column B can still shift when copied sideways. $B4 locks the column; $B$4 locks both."},
+  {q:"The exam says 'formulas may not contain numbers.' Which formula is correct?",opts:["=D1*0.21","=D1*D2 where D2 contains 0.21","=0.21*D1","Both A and C"],c:1,exp:"Typing 0.21 directly in the formula breaks the rule. The number must be in a cell (D2), and your formula references that cell: =D1*D2."},
+  {q:"In Power BI Power Query, what should you do after cleaning data?",opts:["Save the .pbix file","Click Close and Apply","Refresh the report","Delete the original data"],c:1,exp:"Close and Apply pushes the transformed data from Power Query into your report. Without it your cleaning changes don't take effect."},
+  {q:"A nested VLOOKUP =VLOOKUP(VLOOKUP(B3;A:E;3;FALSE);Rates!B2:F7;4;TRUE) — what does the inner VLOOKUP return?",opts:["The star colour","The account type","The opening date (column 3)","The balance"],c:2,exp:"The inner VLOOKUP looks up B3 in columns A:E and returns column 3, which is the opening date. The outer VLOOKUP then uses that date to find the star colour in the Rates table."}
+];
+
+let itQi=0,itScore=0,itAnswered=false;
+
+function initITQuiz(){
+  itQi=0;itScore=0;itAnswered=false;
+  renderITQ();
+}
+
+function renderITQ(){
+  const w=document.getElementById('it-quiz-wrap');
+  if(itQi>=itAllQ.length){
+    w.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:36px;font-weight:500">${itScore}/${itAllQ.length}</div><p style="margin-top:0.5rem">${itScore===itAllQ.length?'Perfect — you know it all!':itScore>=7?'Great work. Review the ones you missed.':'Good start — go back through the sections and try again.'}</p><button onclick="initITQuiz()" style="margin-top:1rem">Try again</button></div>`;
+    return;
+  }
+  const q=itAllQ[itQi];
+  w.innerHTML=`<p style="font-size:12px;color:var(--ink-mute);margin-bottom:0.75rem">Question ${itQi+1} of ${itAllQ.length} · Score: ${itScore}</p>
+  <div class="card">
+    <p class="q-q">${q.q}</p>
+    <div class="q-opts">${q.opts.map((o,i)=>`<button onclick="itAns(${i})" id="ito${i}">${o}</button>`).join('')}</div>
+    <div class="fb" id="itfb"></div>
+    <button onclick="itNextQ()" id="itnxt" style="display:none;margin-top:10px">Next →</button>
+  </div>`;
+  itAnswered=false;
+}
+
+function itAns(i){
+  if(itAnswered)return;
+  itAnswered=true;
+  const q=itAllQ[itQi];
+  document.querySelectorAll('#it-quiz-wrap .q-opts button').forEach(b=>b.disabled=true);
+  document.getElementById('ito'+i).classList.add(i===q.c?'correct':'wrong');
+  if(i!==q.c)document.getElementById('ito'+q.c).classList.add('correct');
+  const fb=document.getElementById('itfb');
+  fb.textContent=q.exp;
+  fb.className='fb show '+(i===q.c?'good':'bad');
+  if(i===q.c)itScore++;
+  document.getElementById('itnxt').style.display='inline-block';
+}
+
+function itNextQ(){itQi++;renderITQ();}
+</script>
+
+</main><!-- end IT main -->
 
 <!-- ══════════════════════════════════════════
      SCRIPTS (order matters)
