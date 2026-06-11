@@ -5,6 +5,7 @@
 
 // Keep shuffled defs in plain JS — never on DOM nodes
 var MATCH_STATE = {};
+var QUIZ_STATE  = {};  // { chId: { correct: 0, answered: 0, total: N } }
 
 // ─────────────────────────────────────────────
 // CHAPTER QUIZZES
@@ -14,6 +15,7 @@ function renderChapterQuiz(chId) {
   if (!container || !CHAPTER_QUIZZES[chId]) return;
 
   var qs = CHAPTER_QUIZZES[chId];
+  QUIZ_STATE[chId] = { correct: 0, answered: 0, total: qs.length };
   var letters = ['A','B','C','D'];
   var html = '';
 
@@ -34,6 +36,7 @@ function renderChapterQuiz(chId) {
     html += '</div>';
   }
 
+  html += '<div class="quiz-score-banner" id="qscore-' + chId + '" style="display:none"></div>';
   container.innerHTML = html;
 }
 
@@ -58,6 +61,21 @@ function answerQ(chId, qi, chosen) {
   } else {
     fb.className = 'quiz-feedback feedback-wrong';
     fb.textContent = '✗ Incorrect. ' + q.fb;
+  }
+
+  var state = QUIZ_STATE[chId];
+  if (state) {
+    state.answered++;
+    if (chosen === q.c) state.correct++;
+    if (state.answered === state.total) {
+      var pct = Math.round((state.correct / state.total) * 100);
+      var banner = document.getElementById('qscore-' + chId);
+      if (banner) {
+        banner.style.display = 'block';
+        banner.className = 'quiz-score-banner ' + (pct >= 70 ? 'score-pass' : 'score-fail');
+        banner.textContent = 'Quiz complete: ' + state.correct + ' / ' + state.total + ' correct (' + pct + '%)';
+      }
+    }
   }
 }
 

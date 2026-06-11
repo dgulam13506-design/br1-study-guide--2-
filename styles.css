@@ -615,6 +615,9 @@ body {
 .ex-result { font-size: 13px; margin-top: 8px; font-weight: 600; }
 .ex-result.good { color: var(--teal); }
 .ex-result.bad  { color: var(--rose); }
+.quiz-score-banner { margin-top: 20px; padding: 14px 18px; border-radius: 10px; font-size: 16px; font-weight: 700; text-align: center; }
+.quiz-score-banner.score-pass { background: var(--teal-lt); color: var(--teal); border: 2px solid var(--teal); }
+.quiz-score-banner.score-fail { background: var(--rose-lt); color: var(--rose); border: 2px solid var(--rose); }
 
 /* ============ AI TUTOR ============ */
 @keyframes blink { 0%,100%{opacity:1} 55%{opacity:0.3} }

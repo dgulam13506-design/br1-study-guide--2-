@@ -3,6 +3,7 @@
 // ============================================================
 
 var ECON_MATCH_STATE = {};
+var ECON_QUIZ_STATE  = {};
 
 // ── Chapter Quizzes ──
 function renderEconQuiz(chId) {
@@ -10,6 +11,7 @@ function renderEconQuiz(chId) {
   if (!container || !ECON_CHAPTER_QUIZZES[chId]) return;
 
   var qs = ECON_CHAPTER_QUIZZES[chId];
+  ECON_QUIZ_STATE[chId] = { correct: 0, answered: 0, total: qs.length };
   var letters = ['A','B','C','D'];
   var html = '';
 
@@ -29,6 +31,7 @@ function renderEconQuiz(chId) {
     html += '<div class="quiz-feedback" id="ecqfb-' + chId + '-' + qi + '" style="display:none"></div>';
     html += '</div>';
   }
+  html += '<div class="quiz-score-banner" id="ecqscore-' + chId + '" style="display:none"></div>';
   container.innerHTML = html;
 }
 
@@ -46,6 +49,21 @@ function answerEconQ(chId, qi, chosen) {
   fb.style.display = 'block';
   fb.className = chosen === q.c ? 'quiz-feedback feedback-correct' : 'quiz-feedback feedback-wrong';
   fb.textContent = chosen === q.c ? '✓ Correct! ' + q.fb : '✗ Incorrect. ' + q.fb;
+
+  var state = ECON_QUIZ_STATE[chId];
+  if (state) {
+    state.answered++;
+    if (chosen === q.c) state.correct++;
+    if (state.answered === state.total) {
+      var pct = Math.round((state.correct / state.total) * 100);
+      var banner = document.getElementById('ecqscore-' + chId);
+      if (banner) {
+        banner.style.display = 'block';
+        banner.className = 'quiz-score-banner ' + (pct >= 70 ? 'score-pass' : 'score-fail');
+        banner.textContent = 'Quiz complete: ' + state.correct + ' / ' + state.total + ' correct (' + pct + '%)';
+      }
+    }
+  }
 }
 
 // ── Fill-in-the-blank ──
