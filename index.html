@@ -1172,7 +1172,7 @@
 #it-main .road-step.done{background:#EAF3DE;border-color:#639922;color:#27500A}
 #it-main .road-step.current{background:#E6F1FB;border-color:#378ADD;color:#0C447C;font-weight:500}
 #it-main .q-q{font-size:14px;font-weight:500;margin-bottom:10px}
-#it-main .q-opts button{display:block;width:100%;text-align:left;padding:8px 12px;margin-bottom:5px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:13px;cursor:pointer}
+#it-main .q-opts button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 12px;margin-bottom:5px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-primary);font-size:13px;cursor:pointer}
 #it-main .q-opts button:hover{background:var(--color-background-secondary)}
 #it-main .q-opts button.correct{background:#EAF3DE;border-color:#639922;color:#27500A}
 #it-main .q-opts button.wrong{background:#FCEBEB;border-color:#A32D2D;color:#791F1F}
@@ -1187,6 +1187,24 @@
 #it-main .ch-title{font-size:13px;font-weight:500}
 #it-main .progress-bar{height:6px;background:var(--color-background-secondary);border-radius:3px;margin-bottom:1rem;overflow:hidden}
 #it-main .progress-fill{height:100%;background:#378ADD;border-radius:3px;transition:width 0.3s}
+#it-main .filter-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+#it-main .filter-row button{padding:5px 14px;border-radius:20px;border:1px solid #ddd;background:white;color:#666;font-size:12px;cursor:pointer;transition:all 0.15s}
+#it-main .filter-row button.active{background:#1a1a1a;color:white;border-color:#1a1a1a;font-weight:500}
+#it-main .q-meta{font-size:11px;color:#aaa;margin-bottom:10px;display:flex;gap:8px}
+#it-main .q-badge{padding:2px 8px;border-radius:4px;font-weight:500;font-size:11px}
+#it-main .badge-excel{background:#E6F1FB;color:#0C447C}
+#it-main .badge-access{background:#EEEDFE;color:#3C3489}
+#it-main .badge-powerbi{background:#FAEEDA;color:#633806}
+#it-main .q-icon{font-size:16px;min-width:20px;text-align:center;flex-shrink:0;opacity:0;transition:opacity 0.15s}
+#it-main .q-icon.show{opacity:1}
+#it-main .progress-row{display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:6px}
+#it-main .next-btn{display:none;margin-top:10px;padding:8px 20px;border-radius:8px;border:1px solid #ddd;background:white;font-size:13px;font-weight:500;cursor:pointer;transition:background 0.1s}
+#it-main .next-btn:hover{background:#f0f0f0}
+#it-main .it-results{text-align:center;padding:2rem 1rem}
+#it-main .it-results-score{font-size:48px;font-weight:600;margin-bottom:0.5rem}
+#it-main .it-results-msg{font-size:14px;color:#555;margin-bottom:1.25rem}
+#it-main .retry-btn{padding:8px 24px;border-radius:8px;border:1px solid #ddd;background:white;font-size:13px;font-weight:500;cursor:pointer}
+#it-main .retry-btn:hover{background:#f0f0f0}
 </style>
 
 <h2 class="sr-only">IT module study guide covering Excel basics, advanced Excel, MS Access, and Power BI based on the AMSIB syllabus</h2>
@@ -1524,6 +1542,19 @@
 <div class="page" id="p-quiz">
   <h2>Test yourself</h2>
   <p style="margin-bottom:1rem">Questions drawn from all four chapters of your syllabus.</p>
+  <div class="filter-row">
+    <button class="active" onclick="itSetFilter('all',this)">All topics</button>
+    <button onclick="itSetFilter('excel',this)">Excel</button>
+    <button onclick="itSetFilter('access',this)">Access</button>
+    <button onclick="itSetFilter('powerbi',this)">Power BI</button>
+  </div>
+  <div class="progress-row">
+    <span id="it-q-counter">Question 1</span>
+    <span id="it-score-display">Score: 0</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="it-prog" style="width:0%"></div>
+  </div>
   <div id="it-quiz-wrap"></div>
 </div>
 
@@ -1538,53 +1569,103 @@ function itTab(id){
 }
 
 const itAllQ=[
-  {q:"You write =B2*C7 and copy it down to row 3. What does C7 become?",opts:["C7 (unchanged)","C8","$C$7","It causes an error"],c:1,exp:"Without $, both row and column shift when you copy. C7 becomes C8 in row 3. You need $C$7 to lock it."},
-  {q:"What does FALSE mean as the last argument in VLOOKUP?",opts:["Approximate match","Exact match","Case-sensitive match","Sort descending"],c:1,exp:"FALSE = exact match. TRUE = approximate (for numeric ranges). For names and codes always use FALSE."},
-  {q:"When would you use HLOOKUP instead of VLOOKUP?",opts:["When the table is very large","When you want an exact match","When your lookup table is horizontal (headers in a row)","When searching multiple sheets"],c:2,exp:"HLOOKUP searches across a row (horizontal). VLOOKUP searches down a column (vertical). Use HLOOKUP when your table has headers in a row with data in rows below."},
-  {q:"In MS Access, what is a primary key?",opts:["The first field in every table","A field that uniquely identifies each record","The table's password","A required field"],c:1,exp:"A primary key uniquely identifies each record. No two records can share the same primary key. Example: your student number at AMSIB."},
-  {q:"In a query, you put two conditions on the SAME row in the criteria grid. What does that mean?",opts:["OR — either condition must be true","AND — both conditions must be true","The conditions are unrelated","It filters by two tables"],c:1,exp:"In Access queries, conditions on the same row = AND (both must be true). Conditions on separate rows = OR (either can be true)."},
-  {q:"In Power BI, what does a slicer do?",opts:["Removes duplicate rows from data","Filters all visuals on the page when you click a value","Splits one column into multiple columns","Creates a hierarchy for drilling"],c:1,exp:"A slicer is an interactive filter on the canvas. Clicking a value (e.g. 'Q1' or 'Netherlands') filters all other visuals on that page simultaneously."},
-  {q:"You need to lock only the row of cell B4 (not the column). What do you write?",opts:["$B$4","$B4","B$4","B4"],c:2,exp:"B$4 locks row 4 (the number after $). The column B can still shift when copied sideways. $B4 locks the column; $B$4 locks both."},
-  {q:"The exam says 'formulas may not contain numbers.' Which formula is correct?",opts:["=D1*0.21","=D1*D2 where D2 contains 0.21","=0.21*D1","Both A and C"],c:1,exp:"Typing 0.21 directly in the formula breaks the rule. The number must be in a cell (D2), and your formula references that cell: =D1*D2."},
-  {q:"In Power BI Power Query, what should you do after cleaning data?",opts:["Save the .pbix file","Click Close and Apply","Refresh the report","Delete the original data"],c:1,exp:"Close and Apply pushes the transformed data from Power Query into your report. Without it your cleaning changes don't take effect."},
-  {q:"A nested VLOOKUP =VLOOKUP(VLOOKUP(B3;A:E;3;FALSE);Rates!B2:F7;4;TRUE) — what does the inner VLOOKUP return?",opts:["The star colour","The account type","The opening date (column 3)","The balance"],c:2,exp:"The inner VLOOKUP looks up B3 in columns A:E and returns column 3, which is the opening date. The outer VLOOKUP then uses that date to find the star colour in the Rates table."}
+  // ── Excel ──
+  {t:'excel',q:'You write =B2*C7 and copy it down to row 3. What does C7 become?',opts:['C7 stays the same','C7 becomes C8','B2 stays the same','Both references stay fixed'],c:1,exp:'Without $, Excel shifts all references when you copy. C7 becomes C8 — pointing to the wrong cell. Use $C$7 or C$7 to lock the row.'},
+  {t:'excel',q:'You need to lock only the row of cell B4. Which is correct?',opts:['$B$4','$B4','B$4','B4'],c:2,exp:'B$4 locks row 4 (the number). The column B can still shift sideways. $B4 locks the column; $B$4 locks both.'},
+  {t:'excel',q:'The exam rule says "no numbers in formulas." Which formula is correct?',opts:['=D1*0.21','=D1*D2 where D2 contains 0.21','=0.21*D1','Both A and C are fine'],c:1,exp:'The number 0.21 must live in a cell (D2). Your formula references D2. Changing the VAT rate only requires updating D2.'},
+  {t:'excel',q:'=TEXTSPLIT(A1;" ") — A1 contains "New York". What is the result?',opts:['"New York" in one cell','An error','Two cells: "New" and "York"','"NewYork" with no space'],c:2,exp:'TEXTSPLIT splits at every space. "New York" becomes "New" in one cell and "York" in the next — a common exam trap.'},
+  {t:'excel',q:'Which function returns the highest value in a range?',opts:['=HIGHEST(A1:A10)','=MAX(A1:A10)','=TOP(A1:A10)','=LARGE(A1:A10,1)'],c:1,exp:'=MAX() returns the largest value in a range. Simple and the most commonly tested.'},
+  {t:'excel',q:'Which function counts cells in a range that are greater than 6?',opts:['=COUNT(D6:D17,">6")','=IF(D6:D17>6,1,0)','=COUNTIF(D6:D17;">6")','=SUM(D6:D17>6)'],c:2,exp:'COUNTIF takes a range and a criteria string. The criteria uses a comparison operator in quotes: ">6".'},
+  {t:'excel',q:'What does =TODAY() return?',opts:['A fixed date from when you created the file',"Today's date — updates every time you open the file",'The current time','The number of days since 1900'],c:1,exp:'=TODAY() is dynamic — it recalculates every time the file is opened, always showing the current date.'},
+  {t:'excel',q:'=WEEKDAY(A1;2) returns 5. What day of the week is it?',opts:['Tuesday','Thursday','Friday','Saturday'],c:2,exp:'With return type 2: 1=Monday … 7=Sunday. So 5 = Friday.'},
+  {t:'excel',q:'What does =INT(7.9) return?',opts:['8','7','7.9','Error'],c:1,exp:'=INT() rounds DOWN regardless of the decimal. INT(7.9) = 7, not 8.'},
+  {t:'excel',q:'You want to add up only cells in A1:A10 that are greater than 100. Which function?',opts:['=COUNTIF(A1:A10;">100")','=SUMIF(A1:A10;">100")','=IF(A1:A10>100;SUM())','=SUM(A1:A10>100)'],c:1,exp:'SUMIF adds cells meeting a condition. COUNTIF counts them instead — make sure you pick the right one.'},
+  {t:'excel',q:'What does F4 do when editing a formula?',opts:['Deletes the selected cell','Cycles through $A$1, A$1, $A1, A1','Saves the file','Opens Find & Replace'],c:1,exp:'F4 cycles through all four reference types. Click inside a cell reference in the formula bar, then press F4 repeatedly.'},
+  {t:'excel',q:'What is the correct syntax to reference cell C9 on the Rates sheet?',opts:["=Rates>C9","=[Rates]C9","='Rates'!C9","=Rates::C9"],c:2,exp:"='SheetName'!CellAddress — the exclamation mark separates the sheet name from the cell reference."},
+  {t:'excel',q:'VLOOKUP with FALSE as last argument means:',opts:['Approximate match','Exact match','Case-sensitive match','Descending sort'],c:1,exp:'FALSE = exact match. TRUE = approximate (for numeric ranges). For names and codes always use FALSE.'},
+  {t:'excel',q:'Your VLOOKUP table_array is A2:D26 but col_index is 5. What happens?',opts:['Returns the last column','Returns column 5 from the full sheet','#REF! error','Wraps to column 1'],c:2,exp:'#REF! occurs when col_index exceeds the number of columns in table_array. A2:D26 only has 4 columns — use A:E instead.'},
+  {t:'excel',q:'When should you use HLOOKUP instead of VLOOKUP?',opts:['When the table is very large','When the lookup table is horizontal — headers in a row','For exact matches only','When searching across multiple sheets'],c:1,exp:'HLOOKUP searches across a row (horizontal). VLOOKUP searches down a column (vertical). Use HLOOKUP when your table has headers in a row.'},
+  {t:'excel',q:'=IF(AND(B3>=4;B3<=16);"school age";"not") — what does AND require?',opts:['Either condition can be true','Both conditions must be true simultaneously','It counts how many are true','It formats the cell'],c:1,exp:'AND requires ALL conditions to be true. B3 must be both >=4 AND <=16 at the same time.'},
+  {t:'excel',q:'What is the key advantage of XLOOKUP over VLOOKUP?',opts:['XLOOKUP is faster','XLOOKUP can search left, right, up or down','XLOOKUP works on older Excel versions','XLOOKUP does not need a table'],c:1,exp:'VLOOKUP can only return values to the RIGHT of the lookup column. XLOOKUP can search in any direction and has a built-in "not found" message.'},
+  {t:'excel',q:'You want a running cumulative total. What goes in F7 (given F6=E6)?',opts:['=SUM(E6:E7)','=F6+E7','=E7','=SUM(E6+E7)'],c:1,exp:"=F6+E7 adds the previous cumulative total to this month's earnings. When copied down, both references shift correctly."},
+  // ── Access ──
+  {t:'access',q:'Two criteria are on the SAME row in the Access query grid. What does this mean?',opts:['OR — either condition true','AND — both conditions must be true','They are unrelated','It joins two tables'],c:1,exp:'Same row = AND. Different rows = OR. This is the most tested Access concept.'},
+  {t:'access',q:'What criteria finds all students whose name starts with B?',opts:['"B"','Like "B*"','= "B"','Starts("B")'],c:1,exp:'Like "B*" uses the wildcard * to match any characters after B. Access adds "Like" automatically when you type B*.'},
+  {t:'access',q:'What criteria finds students with debt between 250 and 500 (inclusive)?',opts:['>250 And <500','>=250 And <=500','Between 250 And 500','250-500'],c:2,exp:'Between 250 And 500 is inclusive — it includes 250 and 500. >250 And <500 would exclude both boundary values.'},
+  {t:'access',q:'>300 Or <400 — what does it return?',opts:['Only values between 300 and 400','All records — every number satisfies at least one side','Nothing','Only values >400'],c:1,exp:'Every number is either >300 or <400. So ALL records are returned. This is one of the "strange" combinations to know.'},
+  {t:'access',q:'<300 And >400 — what does it return?',opts:['Values between 300 and 400','All records','No records — impossible condition','Values outside 300–400'],c:2,exp:'No number can be simultaneously <300 AND >400. This is an impossible condition — zero records returned.'},
+  {t:'access',q:'What is referential integrity (Rule 2)?',opts:['Primary key must be unique','Foreign key must match an existing primary key in the related table, or be empty','All fields must have values','Tables must have equal record counts'],c:1,exp:'Rule 2: a foreign key value must exist as a primary key in the parent table, or be empty. Access blocks entries that reference non-existent parents.'},
+  {t:'access',q:'What is the risk of using Like "*2010" for a date field?',opts:['Only works for years after 2000','Treats date as text — may break on different regional settings','Selects all dates','Only works with dd/mm/yyyy'],c:1,exp:'Using * treats the date field as text. On a computer with different date format settings the same query may return wrong results. Use Between...And instead.'},
+  {t:'access',q:'What does ORDER BY Balance DESC do in SQL?',opts:['Filters where Balance is descending','Sorts from highest Balance to lowest','Groups by Balance','Removes duplicates'],c:1,exp:'ORDER BY sorts results. DESC = descending (highest to lowest). ASC = ascending (default).'},
+  {t:'access',q:'What is a composite primary key?',opts:['A primary key made of two or more fields combined','A primary key that auto-increments','A primary key shared between two tables','A primary key with no restrictions'],c:0,exp:'A composite primary key uses two or more fields together as the unique identifier. Example: Student Number + Module Code to identify a unique exam result.'},
+  {t:'access',q:'What does INNER JOIN return?',opts:['All records from both tables','Only records that have a match in both tables','All records from the left table only','Combines tables permanently'],c:1,exp:'INNER JOIN returns only rows where there is a matching value in both tables. Rows without a match are excluded.'},
+  {t:'access',q:'In a Report, which section appears once at the very top of the entire report?',opts:['Page header','Detail section','Report header','Report footer'],c:2,exp:'The Report header appears once at the very beginning (e.g. report title). The Page header appears at the top of every page.'},
+  {t:'access',q:'Naming convention — what prefix goes on a query?',opts:['frm_','rpt_','qry_','tbl_'],c:2,exp:'Convention: qry_ for queries, frm_ for forms, rpt_ for reports, tbl_ for tables.'},
+  // ── Power BI ──
+  {t:'powerbi',q:'What does "Close & Apply" do in Power Query?',opts:['Saves the .pbix file','Closes Power BI Desktop','Pushes cleaned data into the report','Clears all transformation steps'],c:2,exp:"Close & Apply finalises your Power Query transformations and loads the updated data into the report. Without it your changes don't take effect."},
+  {t:'powerbi',q:'What is a slicer in Power BI?',opts:['A tool to split columns','An interactive filter that filters all visuals on the page','A chart type for proportions','A way to drill into date hierarchies'],c:1,exp:'A slicer is a visual filter. Clicking a value (e.g. Q1 or Netherlands) instantly filters all other visuals on that report page.'},
+  {t:'powerbi',q:'Numbers loaded as text in Power Query. What transformation fixes this?',opts:['Split Column','Replace Values','Change Data Type','Remove Duplicates'],c:2,exp:'Change Data Type converts a column to the correct type. Select the column → Data Type → Whole Number (or Decimal, Date, etc.).'},
+  {t:'powerbi',q:'"NL" should be "Netherlands". Which Power Query transformation?',opts:['Filter Rows','Split Column','Rename Column','Replace Values'],c:3,exp:'Replace Values: Transform → Replace Values → find "NL" → replace with "Netherlands".'},
+  {t:'powerbi',q:'Where do you see raw loaded data in Power BI?',opts:['Report view','Model view','Data view','Power Query editor'],c:2,exp:'Data view (left sidebar icon) shows the actual data in table form. Report view is for visuals. Model view shows relationships.'},
+  {t:'powerbi',q:'Which visual displays a single key number like total profit?',opts:['Line chart','Card','Matrix','Pie chart'],c:1,exp:'A Card visual displays a single number prominently — perfect for KPIs like total revenue, total customers, or average score.'},
+  {t:'powerbi',q:'The double down arrow (↓↓) above a visual does what?',opts:['Drills into one specific bar','Expands ALL items to the next hierarchy level at once','Goes back up one level','Removes the hierarchy'],c:1,exp:'The double arrow expands every item to the next level simultaneously — e.g. all years expand to quarters at once.'},
+  {t:'powerbi',q:'You need to exclude Montana from your dataset. Which Power Query step?',opts:['Replace Values','Remove Duplicates','Filter Rows — deselect Montana','Change Data Type'],c:2,exp:'Filter Rows removes records matching a value. Click the column dropdown in Power Query → deselect Montana.'},
+  {t:'powerbi',q:'Which Power BI view shows relationships between tables?',opts:['Report view','Data view','Model view','Power Query editor'],c:2,exp:'Model view (third icon in the left sidebar) shows all tables and the relationships between them — similar to the Relationships window in Access.'},
 ];
 
+let itFiltered=itAllQ.slice();
 let itQi=0,itScore=0,itAnswered=false;
 
 function initITQuiz(){
+  itFiltered=itAllQ.slice();
+  itQi=0;itScore=0;itAnswered=false;
+  document.querySelectorAll('#p-quiz .filter-row button').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('#p-quiz .filter-row button')[0].classList.add('active');
+  renderITQ();
+}
+
+function itSetFilter(f,btn){
+  document.querySelectorAll('#p-quiz .filter-row button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  itFiltered=f==='all'?itAllQ.slice():itAllQ.filter(q=>q.t===f);
   itQi=0;itScore=0;itAnswered=false;
   renderITQ();
 }
 
 function renderITQ(){
   const w=document.getElementById('it-quiz-wrap');
-  if(itQi>=itAllQ.length){
-    w.innerHTML=`<div class="card" style="text-align:center;padding:2rem"><div style="font-size:36px;font-weight:500">${itScore}/${itAllQ.length}</div><p style="margin-top:0.5rem">${itScore===itAllQ.length?'Perfect — you know it all!':itScore>=7?'Great work. Review the ones you missed.':'Good start — go back through the sections and try again.'}</p><button onclick="initITQuiz()" style="margin-top:1rem">Try again</button></div>`;
+  const total=itFiltered.length;
+  document.getElementById('it-q-counter').textContent=itQi<total?'Question '+(itQi+1)+' of '+total:'Done!';
+  document.getElementById('it-score-display').textContent='Score: '+itScore;
+  document.getElementById('it-prog').style.width=(itQi/total*100)+'%';
+  if(itQi>=total){
+    const pct=Math.round(itScore/total*100);
+    w.innerHTML='<div class="card it-results"><div class="it-results-score">'+itScore+'/'+total+'</div><p class="it-results-msg">'+(pct===100?'Perfect score!':pct>=80?'Great work — almost there.':pct>=60?'Good effort — review the ones you missed.':'Keep studying and try again!')+'</p><button class="retry-btn" onclick="initITQuiz()">Try again</button></div>';
     return;
   }
-  const q=itAllQ[itQi];
-  w.innerHTML=`<p style="font-size:12px;color:var(--ink-mute);margin-bottom:0.75rem">Question ${itQi+1} of ${itAllQ.length} · Score: ${itScore}</p>
-  <div class="card">
-    <p class="q-q">${q.q}</p>
-    <div class="q-opts">${q.opts.map((o,i)=>`<button onclick="itAns(${i})" id="ito${i}">${o}</button>`).join('')}</div>
-    <div class="fb" id="itfb"></div>
-    <button onclick="itNextQ()" id="itnxt" style="display:none;margin-top:10px">Next →</button>
-  </div>`;
+  const q=itFiltered[itQi];
+  const bClass=q.t==='excel'?'badge-excel':q.t==='access'?'badge-access':'badge-powerbi';
+  const bLabel=q.t==='excel'?'Excel':q.t==='access'?'Access':'Power BI';
+  w.innerHTML='<div class="card"><div class="q-meta"><span class="q-badge '+bClass+'">'+bLabel+'</span></div><p class="q-q">'+q.q+'</p><div class="q-opts">'+q.opts.map(function(o,i){return '<button onclick="itAns('+i+')" id="ito'+i+'"><span class="q-icon" id="itico'+i+'"></span><span>'+o+'</span></button>';}).join('')+'</div><div class="fb" id="itfb"></div><button class="next-btn" id="itnxt" onclick="itNextQ()">'+(itQi+1<total?'Next →':'See results')+'</button></div>';
   itAnswered=false;
 }
 
 function itAns(i){
   if(itAnswered)return;
   itAnswered=true;
-  const q=itAllQ[itQi];
-  document.querySelectorAll('#it-quiz-wrap .q-opts button').forEach(b=>b.disabled=true);
-  document.getElementById('ito'+i).classList.add(i===q.c?'correct':'wrong');
-  if(i!==q.c)document.getElementById('ito'+q.c).classList.add('correct');
-  const fb=document.getElementById('itfb');
+  const q=itFiltered[itQi];
+  document.querySelectorAll('#it-quiz-wrap .q-opts button').forEach(function(b){b.disabled=true;});
+  var cb=document.getElementById('ito'+i);
+  var rb=document.getElementById('ito'+q.c);
+  var ci=document.getElementById('itico'+i);
+  var ri=document.getElementById('itico'+q.c);
+  if(i===q.c){cb.classList.add('correct');ci.textContent='✅';ci.classList.add('show');}
+  else{cb.classList.add('wrong');ci.textContent='❌';ci.classList.add('show');rb.classList.add('correct');ri.textContent='✅';ri.classList.add('show');}
+  var fb=document.getElementById('itfb');
   fb.textContent=q.exp;
   fb.className='fb show '+(i===q.c?'good':'bad');
   if(i===q.c)itScore++;
+  document.getElementById('it-score-display').textContent='Score: '+itScore;
   document.getElementById('itnxt').style.display='inline-block';
 }
 
