@@ -1519,7 +1519,23 @@ body {
   border-color: var(--warm-200) !important;
 }
 
-[data-theme="dark"] .site-nav { background: rgba(24,22,19,0.97) !important; }
+[data-theme="dark"] .site-nav:not(.econ-subnav) {
+  background: #1a1816 !important;
+  border-bottom-color: var(--warm-200) !important;
+}
+[data-theme="dark"] .site-nav:not(.econ-subnav) .nav-btn {
+  color: #9a9288 !important;
+}
+[data-theme="dark"] .site-nav:not(.econ-subnav) .nav-btn:hover {
+  color: #ede8df !important;
+}
+[data-theme="dark"] .site-nav:not(.econ-subnav) .nav-btn.active {
+  color: var(--amber) !important;
+  border-bottom-color: var(--amber) !important;
+}
+[data-theme="dark"] .site-nav:not(.econ-subnav) .nav-week {
+  color: #6b6155 !important;
+}
 
 [data-theme="dark"] .site-header:not(.econ-header):not(.it-header) {
   background: var(--paper) !important;
