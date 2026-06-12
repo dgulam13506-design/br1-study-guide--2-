@@ -1417,3 +1417,138 @@ body {
   padding-top: 10px;
   margin-top: 2px;
 }
+
+/* ============ DARK MODE TOGGLE BUTTON ============ */
+.dark-toggle {
+  margin-left: auto;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  color: rgba(255,255,255,0.65);
+  font-family: 'Instrument Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.dark-toggle:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border-color: rgba(255,255,255,0.4);
+}
+.dark-toggle-icon { font-size: 14px; line-height: 1; }
+
+/* ============ DARK MODE ============ */
+[data-theme="dark"] {
+  --cream:    #1c1a17;
+  --paper:    #242220;
+  --warm-100: #2e2b26;
+  --warm-200: #3d3930;
+  --warm-400: #6b6155;
+  --warm-600: #9a8e7e;
+  --ink:      #ede8df;
+  --ink-soft: #c8c0b4;
+  --ink-mute: #8a8278;
+  --amber:    #d48f3c;
+  --amber-lt: #7a4a1a;
+  --amber-bg: #2a1e0e;
+  --teal:     #4db8a8;
+  --teal-lt:  #0c2420;
+  --rose:     #e06060;
+  --rose-lt:  #2a0e0e;
+  --indigo:   #7a8eff;
+  --indigo-lt:#10142e;
+  --slate:    #7aa0c0;
+  --slate-lt: #0e1a28;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.35);
+  --shadow:    0 4px 16px rgba(0,0,0,0.45);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.55);
+  --econ-lt:   #0c1e14;
+  --econ-bg:   #0e1a12;
+  --econ-border: rgba(78,201,138,0.2);
+}
+
+/* Surface overrides — elements with hardcoded white/light backgrounds */
+[data-theme="dark"] .def-card,
+[data-theme="dark"] .step-row,
+[data-theme="dark"] .card-white,
+[data-theme="dark"] .fc-front,
+[data-theme="dark"] .fc-ctrl-btn,
+[data-theme="dark"] .quiz-card,
+[data-theme="dark"] .exercise-block,
+[data-theme="dark"] .ov-card,
+[data-theme="dark"] .mock-hero,
+[data-theme="dark"] .exam-topbar,
+[data-theme="dark"] .exam-qcard,
+[data-theme="dark"] .results-hero,
+[data-theme="dark"] .review-card,
+[data-theme="dark"] .exam-dot,
+[data-theme="dark"] .formula-card,
+[data-theme="dark"] .exam-nav-btn:not(.primary):not(.danger),
+[data-theme="dark"] .res-btn:not(.primary),
+[data-theme="dark"] .pause-card,
+[data-theme="dark"] .styled-table { background: #252220 !important; }
+
+[data-theme="dark"] .styled-table thead th { background: #2e2b26 !important; }
+[data-theme="dark"] .styled-table td { border-bottom-color: #3d3930 !important; }
+[data-theme="dark"] .styled-table tr:hover td { background: #1c1a17 !important; }
+
+[data-theme="dark"] .fc-back { background: #2e2b26 !important; }
+
+[data-theme="dark"] .formula-math {
+  background: #0c1e14 !important;
+  border-color: rgba(78,201,138,0.15) !important;
+}
+[data-theme="dark"] .fl-term {
+  background: var(--cream) !important;
+  border-color: var(--warm-200) !important;
+}
+
+[data-theme="dark"] .site-nav { background: rgba(24,22,19,0.97) !important; }
+
+[data-theme="dark"] .site-header:not(.econ-header):not(.it-header) {
+  background: var(--paper) !important;
+  border-bottom-color: var(--warm-200) !important;
+}
+
+[data-theme="dark"] .tutor-input:focus { background: #2e2b26 !important; }
+
+/* IT section dark overrides */
+[data-theme="dark"] #it-main .card,
+[data-theme="dark"] #it-main .ch-card,
+[data-theme="dark"] #it-main .q-opts button,
+[data-theme="dark"] #it-main .next-btn,
+[data-theme="dark"] #it-main .retry-btn { background: #252220 !important; border-color: #3d3930 !important; color: #c8c0b4 !important; }
+
+[data-theme="dark"] #it-main .filter-row button { background: #252220 !important; border-color: #3d3930 !important; color: #8a8278 !important; }
+[data-theme="dark"] #it-main .filter-row button.active { background: #ede8df !important; color: #1c1a17 !important; border-color: #ede8df !important; }
+
+[data-theme="dark"] #it-main th { background: #2e2b26 !important; }
+[data-theme="dark"] #it-main td { border-color: #3d3930 !important; }
+
+[data-theme="dark"] #it-main .b-blue   { background: #0d1e30 !important; color: #7ab5e8 !important; }
+[data-theme="dark"] #it-main .b-green  { background: #0d2010 !important; color: #7de8a8 !important; }
+[data-theme="dark"] #it-main .b-amber  { background: #2a1e0e !important; color: #d4883a !important; }
+[data-theme="dark"] #it-main .b-purple { background: #1a1830 !important; color: #a89eff !important; }
+[data-theme="dark"] #it-main .b-teal   { background: #0c2420 !important; color: #4db8a8 !important; }
+[data-theme="dark"] #it-main .b-red    { background: #2a0e0e !important; color: #e06060 !important; }
+
+[data-theme="dark"] #it-main .tip  { background: #0d2010 !important; color: #7de8a8 !important; }
+[data-theme="dark"] #it-main .warn { background: #2a1e0e !important; color: #d4883a !important; }
+[data-theme="dark"] #it-main .info { background: #0d1e30 !important; color: #7ab5e8 !important; }
+
+[data-theme="dark"] #it-main .fb.good { background: #0d2010 !important; color: #7de8a8 !important; }
+[data-theme="dark"] #it-main .fb.bad  { background: #2a0e0e !important; color: #e06060 !important; }
+
+[data-theme="dark"] #it-main .q-opts button.correct { background: #0d2010 !important; border-color: #4db8a8 !important; color: #7de8a8 !important; }
+[data-theme="dark"] #it-main .q-opts button.wrong   { background: #2a0e0e !important; border-color: #e06060 !important; color: #e06060 !important; }
+
+[data-theme="dark"] #it-main .road-step         { background: #252220 !important; border-color: #3d3930 !important; }
+[data-theme="dark"] #it-main .road-step.done    { background: #0d2010 !important; border-color: #4db8a8 !important; color: #7de8a8 !important; }
+[data-theme="dark"] #it-main .road-step.current { background: #0d1e30 !important; border-color: #7ab5e8 !important; color: #7ab5e8 !important; }

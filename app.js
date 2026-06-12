@@ -8,6 +8,27 @@ var BR1_PANELS  = ['overview','ch2','ch6','ch9','ch11','ch12','ch13','mockexam']
 var ECON_PANELS = ['ec-overview','ec1','ec2','ec3','ec5','ec7','ec8','ec9','ec10','ec12','ec-mockexam'];
 var currentSubject = 'br1';
 
+// ── Dark mode ──
+function toggleDarkMode() {
+  setDarkMode(document.documentElement.getAttribute('data-theme') !== 'dark');
+}
+
+function setDarkMode(dark) {
+  var icon  = document.getElementById('dark-toggle-icon');
+  var label = document.getElementById('dark-toggle-label');
+  if (dark) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    if (icon)  icon.textContent  = '☀️';
+    if (label) label.textContent = 'Light';
+    try { localStorage.setItem('sg_theme', 'dark'); } catch(e) {}
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    if (icon)  icon.textContent  = '🌙';
+    if (label) label.textContent = 'Dark';
+    try { localStorage.setItem('sg_theme', 'light'); } catch(e) {}
+  }
+}
+
 // ── Save + restore last panel ──
 function saveState(subject, panelId) {
   try {
@@ -116,6 +137,11 @@ function showEconPanel(id, skipSave) {
 
 // ── Init ──
 window.addEventListener('DOMContentLoaded', function () {
+  // Restore dark mode preference and sync button state
+  try {
+    if (localStorage.getItem('sg_theme') === 'dark') setDarkMode(true);
+  } catch(e) {}
+
   // Render BR1
   var br1 = ['ch2','ch6','ch9','ch11','ch12','ch13'];
   for (var i = 0; i < br1.length; i++) {
