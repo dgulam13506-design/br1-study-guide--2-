@@ -1008,6 +1008,9 @@ body {
   .ch-header { flex-direction: column; gap: 12px; }
   .exam-banner { flex-direction: column; }
   .site-nav { padding: 0 12px; }
+  .subject-bar { padding: 0 12px; }
+  .subject-name { display: none; }
+  .dark-toggle { padding: 7px 10px; font-size: 12px; gap: 5px; }
 }
 
 /* ── match legend (added fix) ── */
@@ -1163,6 +1166,7 @@ body {
 .subject-bar {
   display: flex;
   gap: 0;
+  align-items: center;
   background: var(--ink);
   padding: 0 32px;
   position: sticky;
@@ -1424,25 +1428,30 @@ body {
   align-self: center;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  background: none;
-  border: 1px solid rgba(255,255,255,0.18);
+  gap: 7px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.28);
   border-radius: 20px;
-  color: rgba(255,255,255,0.65);
+  color: white;
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.18s;
   white-space: nowrap;
+  letter-spacing: 0.01em;
 }
 .dark-toggle:hover {
-  background: rgba(255,255,255,0.1);
-  color: white;
-  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.55);
 }
-.dark-toggle-icon { font-size: 14px; line-height: 1; }
+.dark-toggle-icon {
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
 
 /* ============ DARK MODE ============ */
 [data-theme="dark"] {

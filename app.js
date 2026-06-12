@@ -18,13 +18,13 @@ function setDarkMode(dark) {
   var label = document.getElementById('dark-toggle-label');
   if (dark) {
     document.documentElement.setAttribute('data-theme', 'dark');
-    if (icon)  icon.textContent  = '☀️';
-    if (label) label.textContent = 'Light';
+    if (icon)  icon.innerHTML    = '&#9728;';
+    if (label) label.textContent = 'Light mode';
     try { localStorage.setItem('sg_theme', 'dark'); } catch(e) {}
   } else {
     document.documentElement.removeAttribute('data-theme');
-    if (icon)  icon.textContent  = '🌙';
-    if (label) label.textContent = 'Dark';
+    if (icon)  icon.innerHTML    = '&#9790;';
+    if (label) label.textContent = 'Dark mode';
     try { localStorage.setItem('sg_theme', 'light'); } catch(e) {}
   }
 }
